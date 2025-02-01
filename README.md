@@ -17,17 +17,17 @@
   
   _Interactive UI:_ Simple text-based interface for immersive storytelling.
 
-#### How to Play:
+### How to Play:
 
-  Start the game at age 18 and make your first financial and career choices.
+  * Start the game at age 18 and make your first financial and career choices.
   
-  Progress through life, making decisions about jobs, investments, and expenses.
+  * Progress through life, making decisions about jobs, investments, and expenses.
   
-  Encounter random events that impact your financial stability.
+  * Encounter random events that impact your financial stability.
   
-  Aim to retire with the highest possible net worth and financial security.
+  * Aim to retire with the highest possible net worth and financial security.
 
-##### Controls:
+### Controls:
 
 * Follow on-screen prompts and enter choices when required.
 
@@ -35,9 +35,9 @@
 
 * Type 'quit' at any time to exit the game.
 
-##### Roadmap:
+### Roadmap:
 
-# _Planned future updates:_
+#### _Planned future updates:_
 
 * Enhanced UI with better formatting.
 
