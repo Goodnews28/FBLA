@@ -2,7 +2,7 @@
 
 ## Overview:
 
-  Head $tart is an interactive financial simulation game where players make key financial and life decisions from the age of 18 to retirement. 
+  Head $tart is an interactive financial simulation game where players make key financial and life decisions from 18 to retirement. 
   The game teaches financial literacy by guiding players through career choices, investments, and real-life challenges that impact their net worth and quality of life.
 
 ### Features:
@@ -26,6 +26,25 @@
   Encounter random events that impact your financial stability.
   
   Aim to retire with the highest possible net worth and financial security.
+
+##### Controls:
+
+* Follow on-screen prompts and enter choices when required.
+
+* Input numerical values for investments and savings.
+
+* Type 'quit' at any time to exit the game.
+
+##### Roadmap:
+
+# _Planned future updates:_
+
+* Enhanced UI with better formatting.
+
+* More career paths and financial scenarios.
+
+* Advanced economic simulations, including inflation and market fluctuations.
+
 ## Technologies
 
 _Name the technologies used in the project._ 
