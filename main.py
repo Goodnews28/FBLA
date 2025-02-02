@@ -35,6 +35,8 @@ def college():
     else:
         print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
 
+    print(Fore.GREEN + f"Current net worth: {net_worth}" + Style.RESET_ALL)
+
 
 def get_a_job():
     global income, net_worth
