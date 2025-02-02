@@ -359,7 +359,8 @@ def main():
 
     if career == "College Graduate":
         career, income = collegejob()  # Updates job and income separately
-    else career, income = get_a_job()
+    else:
+        career, income = get_a_job()
 
     age_transition()
 
