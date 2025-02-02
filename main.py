@@ -348,7 +348,7 @@ def main():
     print(
         Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.\n")
     time.sleep(1)
-    slowprint(Fore.BLUE + "What is your name?", end="" + Style.RESET_ALL)
+    slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
     name = input()
     time.sleep(.5)
     slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of $1000.")
