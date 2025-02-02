@@ -75,6 +75,7 @@ def start_a_business():
 
 
 def financial_decisions():
+    global income
     global net_worth
     while True:
         slowprint(Fore.BLUE + "What would like to do this year?" + Style.RESET_ALL)
@@ -83,7 +84,7 @@ def financial_decisions():
 
         if choice == "1":
             print("You chose to save 50% of your income.")
-            net_worth += (net_worth * 0.5)  # Assuming you want to save half of the net worth
+            net_worth += (income * 0.5)  # Assuming you want to save half of the net worth
             print(f"You saved 50% of your income. Your net worth is now ${net_worth}.")
             break
 
@@ -160,7 +161,7 @@ def age18_25():
     if choice == "1":
         # Career-focused path
         print("You chose to focus on career advancement. Your career progresses well!")
-        income_increase = random.randint(5000, 10000)
+        income_increase = random.randint(10000, 20000)
         net_worth += income_increase
         print(f"You gained ${income_increase} in income. Your new net worth is ${net_worth}.")
         financial_decisions()
@@ -186,29 +187,19 @@ def age25_30():
     print("2. Rent and save money(Less expensive, but no property appreciation")
     choice = input("Enter your choice (1 or 2): ")
     if choice == "1":
-        house_cost = random.randint(100000, 500000)
-        if net_worth >= house_cost:
-            net_worth -= house_cost
-            print(f"You bought a house for ${house_cost}. Your new net worth is ${net_worth}.")
-            financial_decisions()
-            return house_cost
-        else:
-            print("You don't have enough money to buy a house. Try saving more")
-            financial_decisions()
-            return net_worth
+        house_cost = random.randint(100000, 600000)
+        net_worth -= house_cost
+        print(f"You bought a house for ${house_cost}. Your new net worth is ${net_worth}.")
+        financial_decisions()
+        return house_cost
 
     elif choice == "2":
         print("You chose to rent and save money. You have more money to spend on luxuries.")
         rent_cost = random.randint(5000, 20000)
-        if net_worth >= rent_cost:
-            net_worth -= rent_cost
-            print(f"You rented a house for ${rent_cost}. Your new net worth is ${net_worth}.")
-            financial_decisions()
-            return rent_cost
-        else:
-            print("You don't have enough money to rent a house. Try saving more")
-            financial_decisions()
-            return net_worth
+        net_worth -= rent_cost
+        print(f"You rented a house for ${rent_cost}. Your new net worth is ${net_worth}.")
+        financial_decisions()
+        return rent_cost
 
     # NOT DONE DO SOME CHOICES HERE
 
@@ -252,17 +243,17 @@ def age40_50():
     global net_worth
     slowprint(Fore.BLUE + "Midlife! Options:" + Style.RESET_ALL)
     print("1. Start a new investment portfolio (Could accumulate wealth over time")
-    print("2. Take a career break (Risking reduced income)")
+    print("2. Take a career break (Risking reduced income, but sometimes needed for balance)")
     choice = input("Enter your choice (1 or 2): ")
     if choice == "1":
-        investment = random.randint(10000, 50000)
+        investment = random.randint(10000, 70000)
         net_worth += investment
         print(
             f"You chose to start a new investment portfolio. Your investments grow and you accumulate ${investment}.\nYour networth is now ${net_worth}.")
         financial_decisions()
         return investment
     elif choice == "2":
-        break_cost = random.randint(1000, 10000)
+        break_cost = random.randint(10000, 50000)
         net_worth -= break_cost
         print(f"You chose to take a career break.\nYour networth is now ${net_worth}.")
         financial_decisions()
@@ -317,9 +308,9 @@ def initial_choice():
     global net_worth
     while True:
         slowprint(Fore.BLUE + "\nFresh out of high school. What's next?" + Style.RESET_ALL)
-        print("1. Get a Job (Immediate Income, but lower long-term income)")
-        print("2. Go to College (Higher income, but student loans)")
-        print("3. Start a Business (Higher income, but higher initial costs)")
+        print("1. Get a Job (Immediate Income, but lower long-term income and limited growth)")
+        print("2. Go to College (Leads to student loans, delayed income, but higher long-term earnings)")
+        print("3. Start a Business (High risk, high reward)")
         choice = input("Enter your choice (1-3) (or 'stop' to exit): ")
 
         if choice == "1":
