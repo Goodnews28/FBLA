@@ -2,10 +2,11 @@ import time
 import random
 from colorama import Fore, Back, Style
 
+global income
 global net_worth
 net_worth = 1000  # Starting balance
 
-
+#Creates a typewriter effect for the text
 def slowprint(text, delay=0.05):
     for char in text:
         print(char, end='', flush=True)
@@ -23,17 +24,18 @@ def college():
     while True:
         if choice == "1":
             print("You chose to stay in-state. A better financial decision but you have limited opportunities")
-            net_worth -= 20000
+            net_worth -= 100000
             return net_worth, "College Graduate"
         elif choice == "2":
             print("You chose to go out of state. You have more opportunities but you have a higher tuition cost.")
-            net_worth -= 50000
+            net_worth -= 160000
             return net_worth, "College Graduate"
         else:
             print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
 
 
 def get_a_job():
+    global income
     global net_worth
     jobs = {
         "Retail Worker": 20000, "Fast Food Worker": 15000, "Office Assistant": 40000, "Factory Worker": 38000,
@@ -44,10 +46,12 @@ def get_a_job():
 
     job, income = random.choice(list(jobs.items()))
     slowprint(f"You got a job as a {job} and earn ${income} per year.")
+    net_worth += income
     return job, income
 
 
 def collegejob():
+    global income
     global net_worth
     better_jobs = {
         "Doctor": 350000, "Lawyer": 140000, "Corporate Manager": 100000, "Actor": 80000, "Software Engineer": 130000,
@@ -55,17 +59,18 @@ def collegejob():
         "Professor": 180000, "Veterinarian": 130000
     }
     job, income = random.choice(list(better_jobs.items()))
-    slowprint(f"As a college graduate, you got a job as a {job} and earn ${income} per year.")
+    slowprint(f"After graduating college, you got a job as a {job} and earn ${income} per year.")
     net_worth += income
     return job, income
 
 
 def start_a_business():
+    global income
     global net_worth
     slowprint(
-        "Congratulations! You have decided to start a business. Initial costs are high, but you can make a lot of money.")
-    income = random.randint(50000, 100000)
-    net_worth -= 10000
+        "Congratulations! You have decided to start a business. The risks are high, but so is the reward.")
+    income = random.randint(50000, 400000)
+    net_worth -= 90000
     return net_worth, income
 
 
@@ -84,7 +89,7 @@ def financial_decisions():
 
         elif choice == "2":
             print("You chose to invest in stocks.")
-            invest_result = random.choice([1000, 200, 500, 20000, 10000, 2000])
+            invest_result = random.choice(100, 20000)
             net_worth += invest_result
             print(f"Your investment resulted in ${invest_result}. Your new net worth is ${net_worth}.")
             break
