@@ -24,17 +24,16 @@ def college():
     choice = input(
         "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities) \n")
     print("")
-    while True:
-        if choice == "1":
-            print("You chose to stay in-state. A better financial decision but you have limited opportunities")
-            net_worth -= 100000
-            return net_worth, "College Graduate"
-        elif choice == "2":
-            print("You chose to go out of state. You have more opportunities but you have a higher tuition cost.")
-            net_worth -= 160000
-            return net_worth, "College Graduate"
-        else:
-            print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
+    if choice == "1":
+        print("You chose to stay in-state. A better financial decision but you have limited opportunities")
+        net_worth -= 100000
+        return net_worth, "College Graduate"
+    elif choice == "2":
+        print("You chose to go out of state. You have more opportunities but you have a higher tuition cost.")
+        net_worth -= 160000
+        return net_worth, "College Graduate"
+    else:
+        print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
 
 
 def get_a_job():
@@ -329,7 +328,7 @@ def initial_choice():
         elif choice == "3":
             net_worth, business_status = start_a_business()
             career = "Entrepreneur"
-            return net_worth, career, income
+            return net_worth, career
         elif choice.lower() == "stop":
             slowprint(
                 Fore.BLUE + f"Game Over! Thanks for playing! Your final net worth is ${net_worth}." + Style.RESET_ALL)
