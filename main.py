@@ -1,7 +1,6 @@
 import time
 import random
 from colorama import Fore, Back, Style
-from rich import print
 
 global income
 global net_worth
@@ -347,7 +346,7 @@ def main():
     age = 18
     name = ""
     print(
-        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\n[italic]This is a game designed to teach you about making smart financial decisions.[/italic] \n")
+        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.\n")
     time.sleep(1)
     slowprint(Fore.BLUE + "What is your name?", end="" + Style.RESET_ALL)
     name = input()
