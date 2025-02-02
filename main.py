@@ -2,10 +2,10 @@ import time
 import random
 from colorama import Fore, Back, Style
 
-global income
-global net_worth
+global income, net_worth, age
 net_worth = 1000  # Starting balance
-global age = 18 #Starting age
+income = 0
+age = 18 #Starting age
 
 #Creates a typewriter effect for the text
 def slowprint(text, delay=0.05):
@@ -38,8 +38,7 @@ def college():
 
 
 def get_a_job():
-    global income
-    global net_worth
+    global income, net_worth
     jobs = {
         "Retail Worker": 20000, "Fast Food Worker": 15000, "Office Assistant": 40000, "Factory Worker": 38000,
         "Service Worker": 28000,
@@ -54,8 +53,7 @@ def get_a_job():
 
 
 def collegejob():
-    global income
-    global net_worth
+    global income, net_worth
     better_jobs = {
         "Doctor": 350000, "Lawyer": 140000, "Corporate Manager": 100000, "Actor": 80000, "Software Engineer": 130000,
         "Accountant": 79000, "Architect": 108000, "Engineer": 116000, "Astronaut": 152000, "Pilot": 215000,
@@ -68,8 +66,7 @@ def collegejob():
 
 
 def start_a_business():
-    global income
-    global net_worth
+    global income, net_worth
     slowprint(
         "Congratulations! You have decided to start a business. The risks are high, but so is the reward.")
     income = random.randint(50000, 400000)
@@ -78,8 +75,7 @@ def start_a_business():
 
 
 def financial_decisions():
-    global income
-    global net_worth
+    global income, net_worth
     print("")
     while True:
         slowprint(Fore.BLUE + "What would like to do this year?" + Style.RESET_ALL)
@@ -325,15 +321,15 @@ def initial_choice():
             job, income = get_a_job()
             net_worth += income
             career = job
-            return net_worth, career
+            return net_worth, career, income
         elif choice == "2":
             net_worth, graduate_status = college()
             career = graduate_status
-            return net_worth, career
+            return net_worth, career, 0
         elif choice == "3":
             net_worth, business_status = start_a_business()
             career = "Entrepreneur"
-            return net_worth, career
+            return net_worth, career, income
         elif choice.lower() == "stop":
             slowprint(
                 Fore.BLUE + f"Game Over! Thanks for playing! Your final net worth is ${net_worth}." + Style.RESET_ALL)
@@ -343,8 +339,7 @@ def initial_choice():
 
 
 def main():
-    global net_worth
-    global age
+    global net_worth, age
     income, career = None, None
     name = ""
     print(
@@ -355,7 +350,7 @@ def main():
     time.sleep(.5)
     slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of $1000.")
 
-    financial_effect, career = initial_choice()
+    financial_effect, career, income = initial_choice()
     if career is None:
         return
 
@@ -364,7 +359,7 @@ def main():
 
     if career == "College Graduate":
         career, income = collegejob()  # Updates job and income separately
-        net_worth += income
+    else career, income = get_a_job()
 
     age_transition()
 
