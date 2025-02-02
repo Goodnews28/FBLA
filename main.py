@@ -5,7 +5,7 @@ from colorama import Fore, Back, Style
 global income
 global net_worth
 net_worth = 1000  # Starting balance
-age = 18 #Starting age
+global age = 18 #Starting age
 
 #Creates a typewriter effect for the text
 def slowprint(text, delay=0.05):
@@ -22,7 +22,8 @@ def college():
     print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
     choice = input(
-        "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities) /n")
+        "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities) \n")
+    print("")
     while True:
         if choice == "1":
             print("You chose to stay in-state. A better financial decision but you have limited opportunities")
@@ -123,6 +124,7 @@ def financial_decisions():
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
     global net_worth
+    global age
     while age <= 70:
         print("...")
         print(f"\nCurrent Age: {age}")
@@ -342,8 +344,8 @@ def initial_choice():
 
 def main():
     global net_worth
+    global age
     income, career = None, None
-    age = 18
     name = ""
     print(
         Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.\n")
