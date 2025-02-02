@@ -1,10 +1,12 @@
 import time
 import random
 from colorama import Fore, Back, Style
+from rich import print
 
 global income
 global net_worth
 net_worth = 1000  # Starting balance
+age = 18 #Starting age
 
 #Creates a typewriter effect for the text
 def slowprint(text, delay=0.05):
@@ -18,9 +20,10 @@ def college():
     global net_worth
     slowprint(
         "You chose to go to college. You have student loans to pay off, but you have an opportunity to get a better paying job.")
+    print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
     choice = input(
-        "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities)")
+        "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities) /n")
     while True:
         if choice == "1":
             print("You chose to stay in-state. A better financial decision but you have limited opportunities")
@@ -59,8 +62,8 @@ def collegejob():
         "Professor": 180000, "Veterinarian": 130000
     }
     job, income = random.choice(list(better_jobs.items()))
-    slowprint(f"After graduating college, you got a job as a {job} and earn ${income} per year.")
     net_worth += income
+    slowprint(f"After graduating college, you got a job as a {job} and earn ${income} per year. You now have a net worth of {net_worth}!")
     return job, income
 
 
@@ -77,6 +80,7 @@ def start_a_business():
 def financial_decisions():
     global income
     global net_worth
+    print("")
     while True:
         slowprint(Fore.BLUE + "What would like to do this year?" + Style.RESET_ALL)
         choice = input(
@@ -90,7 +94,7 @@ def financial_decisions():
 
         elif choice == "2":
             print("You chose to invest in stocks.")
-            invest_result = random.choice(100, 20000)
+            invest_result = random.choice([100, 5000, 10000, 50000, 25000, 20000])
             net_worth += invest_result
             print(f"Your investment resulted in ${invest_result}. Your new net worth is ${net_worth}.")
             break
@@ -120,8 +124,8 @@ def financial_decisions():
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
     global net_worth
-    age = 18
     while age <= 70:
+        print("...")
         print(f"\nCurrent Age: {age}")
         if age < 25:
             # Age 18-25: Young adulthood, early career decisions
@@ -158,6 +162,7 @@ def age18_25():
     slowprint("2. Enjoy your youth with vacations and socializing")
 
     choice = input("Enter your choice (1 or 2): ")
+    print("")
     if choice == "1":
         # Career-focused path
         print("You chose to focus on career advancement. Your career progresses well!")
@@ -311,6 +316,8 @@ def initial_choice():
         print("1. Get a Job (Immediate Income, but lower long-term income and limited growth)")
         print("2. Go to College (Leads to student loans, delayed income, but higher long-term earnings)")
         print("3. Start a Business (High risk, high reward)")
+        print("")
+        time.sleep(.5)
         choice = input("Enter your choice (1-3) (or 'stop' to exit): ")
 
         if choice == "1":
@@ -340,10 +347,12 @@ def main():
     age = 18
     name = ""
     print(
-        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nA game designed to teach you about making smart financial decisions. \n")
-    slowprint("What is your name?")
+        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\n[italic]This is a game designed to teach you about making smart financial decisions.[/italic] \n")
+    time.sleep(1)
+    slowprint(Fore.BLUE + "What is your name?", end="" + Style.RESET_ALL)
     name = input()
-    slowprint(f"Hello {name}! You are {age} years old.")
+    time.sleep(.5)
+    slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of $1000.")
 
     financial_effect, career = initial_choice()
     if career is None:
@@ -356,7 +365,6 @@ def main():
         career, income = collegejob()  # Updates job and income separately
         net_worth += income
 
-    slowprint(f"You're now a {career}. Your starting net worth is ${net_worth}")
     age_transition()
 
 
