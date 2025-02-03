@@ -92,25 +92,29 @@ def financial_decisions():
             net_worth += (income * 0.5)
             print("You saved 50% of your income.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
+            break
 
         elif choice == "2":
             invest_result = random.choice([100, 5000, 10000, 50000, 25000, 20000])
             net_worth += invest_result
             print(f"You invested in stocks, and your investment resulted in ${invest_result}")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
+            break
 
         elif choice == "3":
             luxury_result = random.choice(
                 [-10000, -5000, -1000, -2000, -3000, -4000, -5000, -6000, -7000, -8000, -9000, -10000])
             net_worth += luxury_result
-            print("You spent ${luxury_result} on luxury items.")
+            print(f"You spent ${luxury_result} on luxury items.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
+            break
 
         elif choice == "4":
             retire_savings = random.choice([10000, 5000, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000])
             net_worth += retire_savings
-            print("You saved for retirement and earned ${retire_savings}.")
+            print(f"You saved for retirement and earned ${retire_savings}.")
             slowprint(Fore.GREEN + f"Updated net worth: {net_worth}" + Style.RESET_ALL)
+            break
     
         elif choice == "5":
             print("You chose to retire!")
