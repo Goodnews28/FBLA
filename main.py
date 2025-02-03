@@ -18,28 +18,26 @@ def slowprint(text, delay=0.05):
 def college():
     global net_worth
     slowprint(
-        "You chose to go to college. You have student loans to pay off, but you have an opportunity to get a better paying job.")
+        "You chose to go to college. You have student loans to pay off, but you have an opportunity to get a better paying job. \n")
     print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
     choice = input(
         "1. In-state (Lower tuition costs, limited opportunities \n2. Out-of-state (Higher tuition costs, more opportunities) \n")
-    print("")
     if choice == "1":
         print("You chose to stay in-state. A better financial decision but you have limited opportunities")
         net_worth -= 100000
-        slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-        print("")
         
     elif choice == "2":
         print("You chose to go out of state. You have more opportunities but you have a higher tuition cost.")
         net_worth -= 160000
-        slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-        print("")
+
     else:
         print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
-    return net_worth
+        return net_worth
+    
+    slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
     career, income = collegejob()
-
+    return net_worth, career, income #Returns all necessary values for the main function to use
 
 
 def get_a_job():
@@ -78,7 +76,8 @@ def start_a_business():
         "Congratulations! You have decided to start a business. The risks are high, but so is the reward.")
     income = random.randint(50000, 400000)
     net_worth -= 90000
-    return net_worth, income
+    career = "Entrepreneur"
+    return net_worth, career, income
 
 
 def financial_decisions():
@@ -338,24 +337,21 @@ def initial_choice():
         slowprint(Fore.BLUE + "\nFresh out of high school. What's next?" + Style.RESET_ALL)
         print("1. Get a Job (Immediate Income, but lower long-term income and limited growth)")
         print("2. Go to College (Leads to student loans, delayed income, but higher long-term earnings)")
-        print("3. Start a Business (High risk, high reward)")
-        print("")
+        print("3. Start a Business (High risk, high reward)\n")
         time.sleep(.5)
         choice = input("Enter your choice (1-3) (or 'stop' to exit): ")
 
         if choice == "1":
-            job, income = get_a_job()
+            job, income, net_worth = get_a_job()
             net_worth += income
             career = job
             return net_worth, career, income
         elif choice == "2":
-            net_worth, graduate_status = college()
-            career = graduate_status
-            return net_worth, career, 0
+            net_worth, career, income = college()
+            return net_worth, career, income
         elif choice == "3":
-            net_worth, business_status = start_a_business()
-            career = "Entrepreneur"
-            return net_worth, career
+            net_worth, career, income = start_a_business()
+            return net_worth, career, income
         elif choice.lower() == "stop":
             slowprint(
                 Fore.BLUE + f"Game Over! Thanks for playing! Your final net worth is ${net_worth}." + Style.RESET_ALL)
@@ -367,7 +363,6 @@ def initial_choice():
 def main():
     global net_worth, age
     income, career = None, None
-    name = ""
     print(
         Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.\n")
     time.sleep(1)
