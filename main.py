@@ -37,7 +37,7 @@ def college():
     
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
     career, income = collegejob()
-    return net_worth, career, income #Returns all necessary values for the main function to use
+    return career, income #Returns all necessary values for the main function to use
 
 
 def get_a_job():
@@ -52,7 +52,7 @@ def get_a_job():
     job, income = random.choice(list(jobs.items()))
     slowprint(f"You got a job as a {job} and earn ${income} per year.")
     net_worth += income
-    return job, income, net_worth
+    return job, income
 
 
 def collegejob():
@@ -92,16 +92,12 @@ def financial_decisions():
             net_worth += (income * 0.5)
             print("You saved 50% of your income.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-            return net_worth
-            break
 
         elif choice == "2":
             invest_result = random.choice([100, 5000, 10000, 50000, 25000, 20000])
             net_worth += invest_result
             print(f"You invested in stocks, and your investment resulted in ${invest_result}")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-            return net_worth
-            break
 
         elif choice == "3":
             luxury_result = random.choice(
@@ -109,16 +105,12 @@ def financial_decisions():
             net_worth += luxury_result
             print("You spent ${luxury_result} on luxury items.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-            return net_worth
-            break
 
         elif choice == "4":
             retire_savings = random.choice([10000, 5000, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000])
             net_worth += retire_savings
             print("You saved for retirement and earned ${retire_savings}.")
             slowprint(Fore.GREEN + f"Updated net worth: {net_worth}" + Style.RESET_ALL)
-            return net_worth
-            break
     
         elif choice == "5":
             print("You chose to retire!")
@@ -342,13 +334,13 @@ def initial_choice():
         choice = input("Enter your choice (1-3) (or 'stop' to exit): ")
 
         if choice == "1":
-            job, income, net_worth = get_a_job()
+            job, income = get_a_job()
             net_worth += income
             career = job
-            return net_worth, career, income
+            return career, income
         elif choice == "2":
-            net_worth, career, income = college()
-            return net_worth, career, income
+            career, income = college()
+            return  career, income
         elif choice == "3":
             net_worth, career, income = start_a_business()
             return net_worth, career, income
