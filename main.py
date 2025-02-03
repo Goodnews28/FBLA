@@ -156,8 +156,8 @@ def age18_25():
     global net_worth, age
     if age == 18:
         slowprint(Fore.BLUE + "You're navigating early adulthood. Would you like to:" + Style.RESET_ALL)
-        slowprint("1. Focus on career advancement")
-        slowprint("2. Enjoy your youth with vacations and socializing")
+        print("1. Focus on career advancement")
+        print("2. Enjoy your youth with vacations and socializing")
         choice = input("Enter your choice (1 or 2): ")
         print("")
         if choice == "1":
@@ -197,7 +197,6 @@ def age25_30():
             net_worth -= house_cost
             print(f"You bought a house for ${house_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-            return house_cost
             financial_decisions()
     
         elif choice == "2":
@@ -206,7 +205,6 @@ def age25_30():
             net_worth -= rent_cost
             print(f"You rented a house for ${rent_cost}")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
-            return rent_cost
             financial_decisions()
     financial_decisions()
     # NOT DONE DO SOME CHOICES HERE
@@ -228,7 +226,7 @@ def age30_40():
             print(f"You invested in real estate and gained ${real_estate_investment}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             financial_decisions()
-            return real_estate_investment
+
         elif choice == "2":
             # Focus on career
             salary_increase = random.randint(10000, 25000)
@@ -237,7 +235,7 @@ def age30_40():
                 f"You focused on advancing your career and received a salary increase of ${salary_increase}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             financial_decisions()
-            return salary_increase
+
         elif choice == "3":
             # Start a family
             family_costs = random.randint(20000, 50000)
@@ -245,7 +243,7 @@ def age30_40():
             print(f"You started a family and incurred ${abs(family_costs)} in costs.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             financial_decisions()
-            return family_costs
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1, 2, or 3." + Style.RESET_ALL)
             return age30_40()
@@ -318,7 +316,7 @@ def age50_69():
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return age50_69()
         # NOT DONE DO SOME CHOICES HERE
-    financial_decisions()
+
 
 def age70beyond():
     slowprint("Congratulations! You have retired and are now in retirement.")
