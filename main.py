@@ -164,7 +164,7 @@ def age18_25():
             print(f"You gained ${income_increase} in income.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             financial_decisions()
-            return income_increase
+
         elif choice == "2":
             # Socializing path
             print("You chose to enjoy your youth. While you had fun, you spent money on vacations and social activities.")
@@ -172,7 +172,7 @@ def age18_25():
             net_worth -= expense
             print(f"You spent ${expense} on leisure. Your new net worth is ${net_worth}.")
             financial_decisions()
-            return expense
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return age18_25()
