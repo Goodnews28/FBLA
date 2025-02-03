@@ -51,7 +51,6 @@ def get_a_job():
     print("")
     job, income = random.choice(list(jobs.items()))
     slowprint(f"You got a job as a {job} and earn ${income} per year.")
-    net_worth += income
     return job, income
 
 
@@ -63,7 +62,6 @@ def collegejob():
         "Professor": 180000, "Veterinarian": 130000
     }
     job, income = random.choice(list(better_jobs.items()))
-    net_worth += income
     slowprint(f"After graduating college, you got a job as a {job} and earn ${income} per year.")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
     print("")
@@ -77,6 +75,8 @@ def start_a_business():
     income = random.randint(50000, 400000)
     net_worth -= 90000
     career = "Entrepreneur"
+    print(f"You started a business and earn ${income} per year and spent on $90,000 starting up the business.")
+    slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
     return net_worth, career, income
 
 
@@ -340,9 +340,11 @@ def initial_choice():
             return career, income
         elif choice == "2":
             career, income = college()
+            net_worth += income
             return  career, income
         elif choice == "3":
             net_worth, career, income = start_a_business()
+            net_worth += income
             return net_worth, career, income
         elif choice.lower() == "stop":
             slowprint(
