@@ -378,11 +378,6 @@ def main():
     #if isinstance(financial_effect, int):
         #net_worth += financial_effect
 
-    if career == "College Graduate":
-        career, income = collegejob()  # Updates job and income separately
-    else:
-        career, income = get_a_job()
-
     age_transition()
 
 
