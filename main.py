@@ -39,7 +39,6 @@ def initial_choice(): #Allows them to choose between a job/college/business
             #Job
             personality_traits["career_focused"] += 1 #Gives points to certain personality traits based on their choices for a reflection at the end of the game
             job, income = get_a_job()
-            net_worth += income
             career = job
             return career, income
         elif choice == "2":
@@ -47,13 +46,11 @@ def initial_choice(): #Allows them to choose between a job/college/business
             personality_traits["cautious"] += 1
             personality_traits["career_focused"] += 1
             career, income = college()
-            net_worth += income
             return  career, income
         elif choice == "3":
             #Entrepreneur
             personality_traits["risk_taker"] += 1
             net_worth, career, income = start_a_business()
-            net_worth += income
             return net_worth, career, income
         elif choice.lower() == "stop":
             slowprint(
@@ -61,6 +58,7 @@ def initial_choice(): #Allows them to choose between a job/college/business
             exit()
         else:
             print(Fore.RED + "Invalid input. Please enter 1, 2, or 3." + Style.RESET_ALL)
+        
 
 def get_a_job():
     global income, net_worth
@@ -74,6 +72,9 @@ def get_a_job():
     print("")
     job, income = random.choice(list(jobs.items())) #Ensures the experience and story is entertaining and unpredictable for the user each time
     slowprint(f"You got a job as a {job} and earn ${income} per year.")
+    net_worth += income
+    slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
+    print("")
     return job, income
 
 def college():
@@ -109,6 +110,7 @@ def collegejob():
     }
     job, income = random.choice(list(better_jobs.items()))
     slowprint(f"After graduating college, you got a job as a {job} and earn ${income} per year.")
+    net_worth += income
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
     print("")
     return job, income
@@ -121,7 +123,9 @@ def start_a_business():
     net_worth -= 90000
     career = "Entrepreneur"
     print(f"You started a business and earn ${income} per year and spent on $90,000 starting up the business.")
+    net_worth += income
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
+    print("")
     return net_worth, career, income
 
 def age_transition(): #Ensures the story is carried through different lifestages
