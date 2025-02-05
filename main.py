@@ -250,10 +250,10 @@ def age18_25():
         elif choice == "2":
             # Transportation
             slowprint("Choosing transportation affects finances and lifestyle. Pick one:")
-            rint("1️. Buy a car (High cost, high convenience)")
-            print("2️. Rent a car (Moderate cost, no ownership)")
-            print("3️. Buy a bike (Low cost, eco-friendly)")
-            print("4️. Use public transport (Cheapest option)")
+            print("1️. 🚗 Buy a car (High cost, high convenience)")
+            print("2️. 🚙 Rent a car (Moderate cost, no ownership)")
+            print("3️. 🚲 Buy a bike (Low cost, eco-friendly)")
+            print("4️. 🚌 Use public transport (Cheapest option)")
             transport_choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
             
             transport_costs = {"1": random.randint(10000, 50000), "2": random.randint(500, 2000), "3": random.randint(500, 2000), "4": random.randint(100, 500)}
