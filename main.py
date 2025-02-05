@@ -39,7 +39,7 @@ def get_choice(prompt, valid_choices):
 def initial_choice():
     global net_worth
     while True:
-        slowprint(Fore.BLUE + "\nyYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
+        slowprint(Fore.BLUE + "\nYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
         print("1. Get a Job (Start earning immediately, but limited long-term growth)")
         print("2. Go to College (Invest in education for better future earnings, but take on debt")
         print("3. Start a Business (High risk, high reward, but requires upfront investment)\n")
