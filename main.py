@@ -146,9 +146,6 @@ def age_transition():
     while age <= 70:
         print("...")
         print(f"\nCurrent Age: {age}")
-        help_choice = input("Would you like to access the help menu? (yes/no): ").lower()
-        if help_choice == "yes":
-            help()
 
         if age < 25:
             # Age 18-25: Young adulthood, early career decisions
@@ -193,7 +190,7 @@ def age18_25():
         print("2. Enjoy your youth with vacations and socializing")
         print("3. Take a gap year & Explore the world")
         print("4. Start a sidehustle")
-        choice = get_choice ("Enter your choice (1 - 4): "), ["1", "2", "3", "4"]
+        choice = get_choice ("Enter your choice (1 - 4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # Career-focused path
@@ -978,16 +975,17 @@ def random_events(age, net_worth):
         print(f"At age {age}: {event} (Net worth: ${net_worth})")
 
 def help():
-    print(Fore.GREEN + "Welcome to the Head $tart Help Menu!" + Style.RESET_ALL)
+    print("")
+    slowprint(Fore.GREEN + "\nWelcome to the Head $tart Help Menu!" + Style.RESET_ALL)
     print("This game is designed to teach you about making smart financial decisions.")
     print("You will start with a net worth of $100,000 and make choices that will affect your financial future.")
     print("Your goal is to retire with the highest net worth possible.")
     print("You will be presented with choices at different ages, and your decisions will impact your net worth.")
     print("Good luck!")
     
-    slowprint("Need more help? Type 'yes' or 'no'")
+    slowprint(Fore.GREEN + "Need more help? Type 'yes' or 'no'" + Style.RESET_ALL)
     if input().lower() == "yes":
-        print("\nHELP MENU:")
+        print(Fore.GREEN + "\nHELP MENU:" + Style.RESET_ALL)
         print("1. How do financial choices affect my net worth?")
         print("2. How does the game work?")
         print("3. What are the different paths I can take?")
