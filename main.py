@@ -934,7 +934,6 @@ def financial_decisions():
             print(Fore.RED + "Invalid input. Please choose a valid option." + Style.RESET_ALL)
             break
 
-
 def random_events(age, net_worth):
     events = [
         (Fore.GREEN + "🎉 You won a lottery!" + Fore.RESET, 50000),
@@ -952,7 +951,6 @@ def random_events(age, net_worth):
         event, amount = random.choice(events)
         net_worth += amount
         print(f"At age {age}: {event} (Net worth: ${net_worth})")
-
 
 def help():
     print("")
@@ -1008,7 +1006,6 @@ def main():
 
     initial_choice()
     age_transition()
-
 
 if __name__ == "__main__":
     main()
