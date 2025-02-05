@@ -246,7 +246,7 @@ def age18_25():
         print("2. 🚙 Sort out your transportation (Car, bike, public transport)")
         print("3. 🎓 Further your education (Certifications, courses)")
         print("4. 💸 Invest in cryptocurrency (High risk, high reward)")
-        choice = get_choice("Enter your choice (1-4): "), ["1", "2", "3", "4"]
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # Stock investment
