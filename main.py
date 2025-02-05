@@ -180,7 +180,7 @@ def age18_25():
         print("2. Enjoy your youth, travel, and socialize")
         print("3. Take a gap year to explore and find your passion")
         print("4. Start a side hustle and try to make extra money")
-        choice = get_choice ("Enter your choice (1 - 4): "), ["1", "2", "3", "4"]
+        choice = get_choice ("Enter your choice (1 - 4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # Career-focused path
@@ -232,11 +232,11 @@ def age18_25():
         
     elif age == 23:
         slowprint(Fore.BLUE + "You're in your early 20s. Choose:" + Style.RESET_ALL)
-        print("1. Invest in stocks (High risk, high reward)")
-        print("2. Decide on your primary mode of transportation")
-        print("3. Further your education for career growth")
-        print("4. Invest in cryptocurrency (High risk, high reward)")
-        choice = get_choice("Enter your choice (1-4): "), ["1", "2", "3", "4"]
+        print("1. 💰 Invest in stocks (High risk, high reward)")
+        print("2. 🚙 Decide on your primary mode of transportation")
+        print("3. 🎓 Further your education for career growth")
+        print("4. 💸 Invest in cryptocurrency (High risk, high reward)")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # Stock investment
@@ -275,7 +275,7 @@ def age18_25():
         elif choice == "4":
             # Cryptocurrency investment
             personality_traits["risk_taker"] += 1
-            crypto_investment = random.randint(100, 10000)
+            crypto_investment = random.randint(-10000, 10000)
             net_worth += crypto_investment
             print(f"Your crypto investment yielded ${crypto_investment}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
@@ -290,10 +290,10 @@ def age25_30():
     global net_worth, age, savings, income
     if age == 28:
         slowprint(Fore.BLUE + "You are now settling into adulthood. Choose:" + Style.RESET_ALL)
-        print("1. Buy a house (Requires a down payment, but it could appreciate over time)")
-        print("2. Rent a house(Less expensive, but no property appreciation")
-        print("3. Start a family")
-        print("4. Climb the career ladder (Could lead to salary increases, promotions)")
+        print("1. 🏘 Buy a house (Requires a down payment, but it could appreciate over time)")
+        print("2. 🏡Rent a house(Less expensive, but no property appreciation")
+        print("3. 👪 Start a family")
+        print("4. 📋 Climb the career ladder (Could lead to salary increases, promotions)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
