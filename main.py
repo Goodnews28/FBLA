@@ -24,6 +24,17 @@ def slowprint(text, delay=0.05):
         time.sleep(delay)
     print()
 
+def get_choice(prompt, valid_choices):
+    """Handles user input, allowing access to help and ensuring valid choices."""
+    while True:
+        choice = input(prompt).lower()
+        if choice == "help":
+            help()
+        elif choice in valid_choices:
+            return choice
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
 def initial_choice():
     global net_worth
     while True:
@@ -32,11 +43,8 @@ def initial_choice():
         print("2. Go to College (Leads to student loans, delayed income, but higher long-term earnings)")
         print("3. Start a Business (High risk, high reward)\n")
         time.sleep(.5)
-        choice = input("Enter your choice (1-3) (or 'stop' to exit): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
-        if choice == "help":
-            help()
-            continue
         if choice == "1":
             personality_traits["career_focused"] += 1
             job, income = get_a_job()
@@ -80,8 +88,8 @@ def college():
         "You chose to go to college. You have student loans to pay off, but you have an opportunity to get a better paying job. \n")
     print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
-    choice = input(
-        "1. In-state for $100,000 (Lower tuition costs, limited opportunities \n2. Out-of-state for $160,000 (Higher tuition costs, more opportunities) \n")
+    choice = get_choice(
+        "1. In-state for $100,000 (Lower tuition costs, limited opportunities \n2. Out-of-state for $160,000 (Higher tuition costs, more opportunities) \n", ["1", "2"])
     if choice == "1":
         print("You chose to stay in-state. A better financial decision but you have limited opportunities")
         net_worth -= 100000
@@ -134,19 +142,31 @@ def age_transition():
 
         if age < 25:
             # Age 18-25: Young adulthood, early career decisions
-            age_effect = age18_25()
+            help_choice = input("Would you like to access the help menu? (yes/no): ").lower()
+            if help_choice == "yes":
+                help()
+            age18_25()
         elif age < 30:
             # Age 25-30: Settling down, career decisions
-            age_effect = age25_30()
+            help_choice = input("Would you like to access the help menu? (yes/no): ").lower()
+            if help_choice == "yes":
+                help()
+            age25_30()
         elif age < 40:
             # Age 30-40: Building wealth, career progression
-            age_effect = age30_40()
+            help_choice = input("Would you like to access the help menu? (yes/no): ").lower()
+            if help_choice == "yes":
+                help()
+            age30_40()
         elif age < 50:
             # Age 40-50: Midlife, focus on long-term goals
-            age_effect = age40_50()
+            help_choice = input("Would you like to access the help menu? (yes/no): ").lower()
+            if help_choice == "yes":
+                help()
+            age40_50()
         elif age < 70:
             # Age 50-70: Planning for retirement
-            age_effect = age50_69()
+            age50_69()
         else:
             # Age 70 and beyond: Retirement stage
             return age70beyond()
@@ -163,7 +183,7 @@ def age18_25():
         print("2. Enjoy your youth with vacations and socializing")
         print("3. Take a gap year & Explore the world")
         print("4. Start a sidehustle")
-        choice = input("Enter your choice (1 - 4): ")
+        choice = get_choice ("Enter your choice (1 - 4): "), ["1", "2", "3", "4"]
         print("")
         if choice == "1":
             # Career-focused path
@@ -219,7 +239,7 @@ def age18_25():
         print("2. Sort out your transportation (Car, bike, public transport)")
         print("3. Further your education (Certifications, courses)")
         print("4. Invest in cryptocurrency (High risk, high reward)")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): "), ["1", "2", "3", "4"]
         print("")
         if choice == "1":
             # Stock investment
@@ -301,7 +321,7 @@ def age25_30():
         print("2. Rent a house(Less expensive, but no property appreciation")
         print("3. Start a family")
         print("4. Climb the career ladder (Could lead to salary increases, promotions)")
-        choice = input("Enter your choice (1 - 4 ): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # House Ownership
@@ -330,7 +350,7 @@ def age25_30():
             print("2. Have a child")
             print("3. Get a pet")
             print("4. Elope")
-            family_choice = input("Enter your choice (1-3): ")
+            family_choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3"])
             if family_choice == "1":
                 wedding_cost = random.randint(10000, 500000)
                 net_worth -= wedding_cost
@@ -375,7 +395,7 @@ def age30_40():
         print("2. Focus on career advancement (Could lead to salary increases, promotions)")
         print("3. Purchase a vacation home")
         print("4. Focus on growing your family")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
     
         if choice == "1":
             personality_traits["risk_taker"] += 1
@@ -420,7 +440,7 @@ def age30_40():
         print("2. Invest in your health (Gym membership, healthy food)")
         print("3. Pay off your mortgage (Reduce debt, increase net worth)")
         print("4. Take a vacation (Relax and unwind)")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["cautious"] += 1
             slowprint("You chose to plan for retirement. How?")
@@ -499,7 +519,7 @@ def age40_50():
         print("2. Take a career break (Risking reduced income, but sometimes needed for balance)")
         print("3. Buy a luxury asset")
         print("4. Aggrestively save for retirement")
-        choice = input("Enter your choice (1 to 4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["risk_taker"] += 1
             personality_traits["career_focused"] += 1
@@ -545,7 +565,7 @@ def age40_50():
         print("2. Spend on experiences (Travel, hobbies)")
         print("3. Invest in real estate")
         print("4. Plan for retirement")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["career_focused"] += 1
             personality_traits["frugal"] += 1
@@ -592,7 +612,7 @@ def age50_69():
         print("2. Travel the world (Spend your savings on adventures)")
         print("3. Downsize your home to free up capital")
         print("4. Plan for retirement (wills, trusts, charities)")
-        choice = input("Enter your choice (1 - 4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["career_focused"] += 1
             personality_traits["frugal"] += 1
@@ -667,7 +687,7 @@ def age50_69():
         print("2. Spend on experiences (Travel, hobbies)")
         print("3. Take a family vacation")
         print("4. Plan for retirement")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
         if choice == "1":
             personality_traits["career_focused"] += 1
@@ -710,15 +730,15 @@ def age50_69():
         print("2. Work part-time (Stay active and earn extra income)")
         print("3. Trip around the globe (Spend your savings on adventures)")
         print("4. Move to a retirement friendly area ")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["cautious"] += 1
-            slowprint("You chose to plan for retirement. How?")
+            slowprint(Fore.BLUE + "You chose to plan for retirement. How?" + Style.RESET_ALL)
             print("1. Max out retirement savings")
             print("2. Invest in 401k")
             print("3. Invest in Roth IRA")
             print("4. Invest in mutual funds")
-            choice = input("Enter your choice (1-4): ") 
+            choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"]) 
             if choice == "1":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
@@ -785,7 +805,7 @@ def age50_69():
         print("2. Sell your assets (Downsize and free up capital)")
         print("3. Make a large donation (Support a cause you care about)")
         print("4. Manage healthcare costs (Invest in health insurance)")
-        choice = input("Enter your choice (1-4): ")
+        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         
         if choice == "1":
             return age70beyond()
@@ -827,7 +847,7 @@ def age70beyond():
     print("4. Pass wealth down to family (Support future generations)")
     slowprint(Fore.GREEN + f"YOUR FINAL NET WORTH: ${net_worth}!!!" + Style.RESET_ALL)
     
-    choice = input("Enter your choice (1-4): ")
+    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
     if choice == "1":
         personality_traits["experience_seeker"] += 1
         print("You chose to travel the world. Enjoy your adventures!")
