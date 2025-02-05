@@ -1,6 +1,7 @@
 import time
 import random
 from colorama import Fore, Back, Style
+from ascii_art import get_ascii_art_for_stage
 
 global income, net_worth, savings,  age, reflect
 savings = 0
@@ -139,29 +140,31 @@ def age_transition():
         print("...")
         print(f"\n📅 You are now {age} years old.")
         print("Life moves fast! Every decision you make will shape your financial future.")
-        help_choice = input("💡 Would you like to access the help menu? (yes/no): ").lower()
-        if help_choice == "yes":
-            help()
 
         if age < 25:
             # Age 18-25: Young adulthood, early career decisions
-            print("🌱 You're in your early years, full of energy and choices ahead.")
+            #print("🌱 You're in your early years, full of energy and choices ahead.")
+            get_ascii_art_for_stage("18-25")
             age18_25()
         elif age < 30:
             # Age 25-30: Settling down, career decisions
-            print("💼 Your career is taking shape. Time to make key decisions!")
+            #print("💼 Your career is taking shape. Time to make key decisions!")
+            get_ascii_art_for_stage("25-30")
             age25_30()
         elif age < 40:
             # Age 30-40: Building wealth, career progression
-            print("🚀 This is a crucial period for wealth building and career progression.")
+            #print("🚀 This is a crucial period for wealth building and career progression.")
+            get_ascii_art_for_stage("30-40")
             age30_40()
         elif age < 50:
             # Age 40-50: Midlife, focus on long-term goals
-            print("🔍 You're entering midlife, where long-term financial stability is essential.")
+            #print("🔍 You're entering midlife, where long-term financial stability is essential.")
+            get_ascii_art_for_stage("40-50")   
             age40_50()
         elif age < 70:
             # Age 50-70: Planning for retirement
-            print("🏡 Retirement planning is now a priority. Make wise choices!")
+            #print("🏡 Retirement planning is now a priority. Make wise choices!")
+            get_ascii_art_for_stage("50-69")
             age50_69()
         else:
             # Age 70 and beyond: Retirement stage
