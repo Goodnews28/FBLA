@@ -8,14 +8,6 @@ net_worth = 1000  # Starting balance
 income = 0
 age = 18  # Starting age
 
-RED = "\033[91m"
-GREEN = "\033[92m"
-YELLOW = "\033[93m"
-BLUE = "\033[94m"
-CYAN = "\033[96m"
-BOLD = "\033[1m"
-UNDERLINE = "\033[4m"
-RESET = "\033[0m"
 
 personality_traits = {
     "risk_taker": 0,
@@ -1056,10 +1048,6 @@ def main():
     slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
 
     initial_choice()
-
-    # if isinstance(financial_effect, int):
-    # net_worth += financial_effect
-
     age_transition()
 
 
