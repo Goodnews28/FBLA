@@ -974,7 +974,7 @@ def help():
         choice = input("Enter a number to learn more: ")
         if choice == "1":
             print(
-                "Your financial choices impact your net worth positively or negatively. Smart investments and career decisions increase it, while unnecessary expenses and bad luck decrease it.")
+                "Smart investments and career decisions increases our networth, while unnecessary expenses and bad luck decrease it.")
         elif choice == "2":
             print(
                 "The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
