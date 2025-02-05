@@ -2,11 +2,11 @@ import time
 import random
 from colorama import Fore, Back, Style
 
-global income, net_worth, savings,  age, reflect
+global income, net_worth, savings, age, reflect
 savings = 0
 net_worth = 1000  # Starting balance
 income = 0
-age = 18 #Starting age
+age = 18  # Starting age
 
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -17,7 +17,6 @@ BOLD = "\033[1m"
 UNDERLINE = "\033[4m"
 RESET = "\033[0m"
 
-
 personality_traits = {
     "risk_taker": 0,
     "cautious": 0,
@@ -27,12 +26,14 @@ personality_traits = {
     "experience_seeker": 0
 }
 
-#Creates a typewriter effect for the text
+
+# Creates a typewriter effect for the text
 def slowprint(text, delay=0.05):
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
     print()
+
 
 def get_choice(prompt, valid_choices):
     """Handles user input, allowing access to help and ensuring valid choices."""
@@ -44,6 +45,7 @@ def get_choice(prompt, valid_choices):
             return choice
         else:
             print("Invalid choice. Please enter a valid option.")
+
 
 def initial_choice():
     global net_worth
@@ -66,7 +68,7 @@ def initial_choice():
             personality_traits["career_focused"] += 1
             career, income = college()
             net_worth += income
-            return  career, income
+            return career, income
         elif choice == "3":
             personality_traits["risk_taker"] += 1
             net_worth, career, income = start_a_business()
@@ -78,7 +80,8 @@ def initial_choice():
             exit()
         else:
             print(Fore.RED + "Invalid input. Please enter 1, 2, or 3." + Style.RESET_ALL)
-        
+
+
 def get_a_job():
     global income, net_worth
     jobs = {
@@ -92,6 +95,7 @@ def get_a_job():
     slowprint(f"You got a job as a {job} and earn ${income} per year.")
     return job, income
 
+
 def college():
     global net_worth
     slowprint(
@@ -99,11 +103,12 @@ def college():
     print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
     choice = get_choice(
-        "1. In-state for $100,000 (Lower tuition costs, limited opportunities \n2. Out-of-state for $160,000 (Higher tuition costs, more opportunities) \n", ["1", "2"])
+        "1. In-state for $100,000 (Lower tuition costs, limited opportunities \n2. Out-of-state for $160,000 (Higher tuition costs, more opportunities) \n",
+        ["1", "2"])
     if choice == "1":
         print("You chose to stay in-state. A better financial decision but you have limited opportunities")
         net_worth -= 100000
-        
+
     elif choice == "2":
         print("You chose to go out of state. You have more opportunities but you have a higher tuition cost.")
         net_worth -= 160000
@@ -111,10 +116,11 @@ def college():
     else:
         print(Fore.RED + "Invalid input. Please enter 1 or 2." + Style.RESET_ALL)
         return net_worth
-    
+
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
     career, income = collegejob()
-    return career, income #Returns all necessary values for the main function to use
+    return career, income  # Returns all necessary values for the main function to use
+
 
 def collegejob():
     global income, net_worth
@@ -129,6 +135,7 @@ def collegejob():
     print("")
     return job, income
 
+
 def start_a_business():
     global income, net_worth
     slowprint(
@@ -139,6 +146,7 @@ def start_a_business():
     print(f"You started a business and earn ${income} per year and spent on $90,000 starting up the business.")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
     return net_worth, career, income
+
 
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
@@ -182,6 +190,7 @@ def age_transition():
         income += income * 5
         net_worth = random_events(age, net_worth)
 
+
 def age18_25():
     global net_worth, age, income
     if age == 18:
@@ -190,7 +199,7 @@ def age18_25():
         print("2. Enjoy your youth with vacations and socializing")
         print("3. Take a gap year & Explore the world")
         print("4. Start a sidehustle")
-        choice = get_choice ("Enter your choice (1 - 4): ", ["1", "2", "3", "4"])
+        choice = get_choice("Enter your choice (1 - 4): ", ["1", "2", "3", "4"])
         print("")
         if choice == "1":
             # Career-focused path
@@ -207,13 +216,14 @@ def age18_25():
             # Socializing path
             personality_traits["experience_seeker"] += 1
             personality_traits["risk_taker"] += 1
-            print("You chose to enjoy your youth. While you had fun, you spent money on vacations and social activities.")
+            print(
+                "You chose to enjoy your youth. While you had fun, you spent money on vacations and social activities.")
             expense = random.randint(1000, 5000)  # Spending on leisure
             net_worth -= expense
             print(f"You spent ${expense} on leisure.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             # Gap year path
             personality_traits["experience_seeker"] += 1
@@ -224,7 +234,7 @@ def age18_25():
             print(f"You spent ${travel_cost} on travel.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             # Side hustle path
             personality_traits["career_focused"] += 1
@@ -239,7 +249,7 @@ def age18_25():
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return age18_25()
-        
+
     elif age == 23:
         slowprint(Fore.BLUE + "You're in your early 20s. Choose:" + Style.RESET_ALL)
         print("1. 💰 Invest in stocks (High risk, high reward)")
@@ -256,7 +266,7 @@ def age18_25():
             print(f"You invested in stocks and gained ${stock_investment}. 📈")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             # Transportation
             slowprint("What's your mode of transportation?")
@@ -271,21 +281,21 @@ def age18_25():
                 print(f"You bought a car and spent ${car_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "2":
                 rent_car_cost = random.randint(500, 2000)
                 net_worth -= rent_car_cost
                 print(f"You rented a car and spent ${rent_car_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "3":
                 bike_cost = random.randint(500, 2000)
                 net_worth -= bike_cost
                 print(f"You bought a bike and spent ${bike_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "4":
                 public_transport_cost = random.randint(100, 500)
                 net_worth -= public_transport_cost
@@ -293,7 +303,7 @@ def age18_25():
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
             return
-        
+
         elif choice == "3":
             # Education
             personality_traits["career_focused"] += 1
@@ -301,10 +311,11 @@ def age18_25():
             net_worth -= education_cost
             salary_increase = random.randint(10000, 20000)
             income += salary_increase
-            print(f"You furthered your education and spent ${education_cost}, but you now earn ${salary_increase} more. 👨‍🎓")
+            print(
+                f"You furthered your education and spent ${education_cost}, but you now earn ${salary_increase} more. 👨‍🎓")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             # Cryptocurrency investment
             personality_traits["risk_taker"] += 1
@@ -323,6 +334,7 @@ def age18_25():
     return financial_decisions()
     # NOT DONE DO SOME CHOICES HERE
 
+
 def age25_30():
     global net_worth, age, savings, income
     if age == 28:
@@ -340,7 +352,7 @@ def age25_30():
             print(f"You bought a house for ${house_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n Updated Savings: ${savings}" + Style.RESET_ALL)
             return
-    
+
         elif choice == "2":
             # Renting
             personality_traits["frugal"] += 1
@@ -350,7 +362,7 @@ def age25_30():
             print(f"You rented a house for ${rent_cost}")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             # Start a family
             personality_traits["risk_taker"] += 1
@@ -367,21 +379,21 @@ def age25_30():
                 print(f"You had a wedding and spent ${wedding_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif family_choice == "2":
                 child_cost = random.randint(10000, 90000)
                 net_worth -= child_cost
                 print(f"You had a child and spent ${child_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif family_choice == "3":
                 pet_cost = random.randint(1000, 5000)
                 net_worth -= pet_cost
                 print(f"You got a pet and spent ${pet_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif family_choice == "4":
                 print("You chose to elope and saved money.")
                 return
@@ -397,8 +409,9 @@ def age25_30():
     financial_decisions()
     # NOT DONE DO SOME CHOICES HERE
 
+
 def age30_40():
-    global net_worth,age
+    global net_worth, age
     if age == 33:
         slowprint(Fore.BLUE + "You're in your 30s, building your career and wealth. Choose:" + Style.RESET_ALL)
         print("1. Expand your investment portfolio (Stocks, real estate, bonds, mutual funds)")
@@ -406,7 +419,7 @@ def age30_40():
         print("3. Purchase a vacation home")
         print("4. Focus on growing your family")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
-    
+
         if choice == "1":
             personality_traits["risk_taker"] += 1
             investment = random.randint(10000, 70000)
@@ -414,7 +427,7 @@ def age30_40():
             print(f"You expanded your investment portfolio and gained ${investment}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             personality_traits["career_focused"] += 1
             salary_increase = random.randint(10000, 20000)
@@ -422,7 +435,7 @@ def age30_40():
             print(f"You focused on career advancement and received a salary increase of ${salary_increase}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["luxury_spender"] += 1
             vacation_home_cost = random.randint(100000, 500000)
@@ -430,7 +443,7 @@ def age30_40():
             print(f"You bought a vacation home and spent ${vacation_home_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["experience_seeker"] += 1
             personality_traits["risk_taker"] += 1
@@ -439,11 +452,11 @@ def age30_40():
             print(f"You focused on growing your family and spent ${family_expense}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return age30_40()
-        
+
     elif age == 38:
         slowprint(Fore.BLUE + "You're in your late 30s. Choose:" + Style.RESET_ALL)
         print("1. Plan for retirement (Max out retirement savings, invest in 401k)")
@@ -458,39 +471,39 @@ def age30_40():
             print("2. Invest in 401k")
             print("3. Invest in Roth IRA")
             print("4. Invest in mutual funds")
-            choice = input("Enter your choice (1-4): ") 
+            choice = input("Enter your choice (1-4): ")
             if choice == "1":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You maxed out retirement savings and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "2":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You invested in 401k and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "3":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You invested in Roth IRA and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "4":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You invested in mutual funds and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             else:
                 slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
                 return age30_40()
-        
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             health_cost = random.randint(1000, 5000)
@@ -498,7 +511,7 @@ def age30_40():
             print(f"You invested in your health and spent ${health_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["frugal"] += 1
             mortgage_payment = random.randint(10000, 50000)
@@ -506,7 +519,7 @@ def age30_40():
             print(f"You paid off your mortgage and spent ${mortgage_payment}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["experience_seeker"] += 1
             vacation_cost = random.randint(1000, 5000)
@@ -514,12 +527,13 @@ def age30_40():
             print(f"You took a vacation and spent ${vacation_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return
-        
+
     return financial_decisions()
+
 
 def age40_50():
     global net_worth, age
@@ -528,7 +542,7 @@ def age40_50():
         print("1. Expand investment portfolio (Could accumulate wealth over time")
         print("2. Take a career break (Risking reduced income, but sometimes needed for balance)")
         print("3. Buy a luxury asset")
-        print("4. Aggrestively save for retirement")
+        print("4. Aggressively save for retirement")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["risk_taker"] += 1
@@ -539,7 +553,7 @@ def age40_50():
                 f"You chose to start a new investment portfolio. Your investments grow and you accumulate ${investment}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             personality_traits["risk_taker"] += 1
@@ -548,7 +562,7 @@ def age40_50():
             print(f"You chose to take a career break.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["luxury_spender"] += 1
             luxury_asset_cost = random.randint(10000, 50000)
@@ -556,7 +570,7 @@ def age40_50():
             print(f"You bought a luxury asset and spent ${luxury_asset_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["cautious"] += 1
             retire_savings = random.randint(10000, 50000)
@@ -564,7 +578,7 @@ def age40_50():
             print(f"You saved aggressively for retirement and added ${retire_savings}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return age40_50()
@@ -584,7 +598,7 @@ def age40_50():
             print(f"You focused on growing your wealth and gained ${wealth_growth}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             experience_cost = random.randint(10000, 50000)
@@ -592,7 +606,7 @@ def age40_50():
             print(f"You spent on experiences and spent ${experience_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["frugal"] += 1
             real_estate_return = random.randint(10000, 100000)
@@ -600,7 +614,7 @@ def age40_50():
             print(f"You invested in real estate and earned ${real_estate_return}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["cautious"] += 1
             retire_savings = random.randint(10000, 50000)
@@ -612,6 +626,7 @@ def age40_50():
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return
     return financial_decisions()
+
 
 def age50_69():
     global net_worth, age, income
@@ -631,7 +646,7 @@ def age50_69():
             print(f"You diversified your income and gained ${diverse_income}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             travel_cost = random.randint(10000, 50000)
@@ -639,7 +654,7 @@ def age50_69():
             print(f"You traveled the world and spent ${travel_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["frugal"] += 1
             home_downsize = random.randint(10000, 50000)
@@ -647,7 +662,7 @@ def age50_69():
             print(f"You downsized your home and gained ${home_downsize}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["cautious"] += 1
             slowprint("You're getting reading for retirement. What is your legacy?")
@@ -662,35 +677,35 @@ def age50_69():
                 print(f"You wrote a will and spent ${will_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "2":
                 trust_cost = random.randint(10000, 50000)
                 net_worth -= trust_cost
                 print(f"You set up a trust and spent ${trust_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "3":
                 charity_cost = random.randint(1000, 5000)
                 net_worth -= charity_cost
                 print(f"You donated to charity and spent ${charity_cost}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "4":
                 family_investment = random.randint(10000, 500000)
                 net_worth -= family_investment
                 print(f"You invested in your family and spent ${family_investment}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             else:
                 slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
-                return 
+                return
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
             return age50_69()
-    
+
     elif age == 58:
         slowprint(Fore.BLUE + "You're in your late 50s. Options:" + Style.RESET_ALL)
         print("1. Focus on growing your wealth")
@@ -706,7 +721,7 @@ def age50_69():
             print(f"You focused on growing your wealth and gained ${wealth_growth}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             experience_cost = random.randint(10000, 50000)
@@ -714,7 +729,7 @@ def age50_69():
             print(f"You spent on experiences and spent ${experience_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["experience_seeker"] += 1
             vacation_cost = random.randint(1000, 5000)
@@ -722,7 +737,7 @@ def age50_69():
             print(f"You took a family vacation and spent ${vacation_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["cautious"] += 1
             retire_savings = random.randint(10000, 50000)
@@ -733,7 +748,7 @@ def age50_69():
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
             return
-        
+
     elif age == 63:
         slowprint(Fore.BLUE + "In your 60s, you must make key decisions about late-life planning." + Style.RESET_ALL)
         print("1. Plan for retirement (Max out retirement savings, invest in 401k)")
@@ -748,39 +763,39 @@ def age50_69():
             print("2. Invest in 401k")
             print("3. Invest in Roth IRA")
             print("4. Invest in mutual funds")
-            choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"]) 
+            choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
             if choice == "1":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You maxed out retirement savings and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "2":
                 retire_savings = random.randint(10000, 80000)
                 net_worth += retire_savings
                 print(f"You invested in 401k and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "3":
                 retire_savings = random.randint(10000, 50000)
                 net_worth += retire_savings
                 print(f"You invested in Roth IRA and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             elif choice == "4":
                 retire_savings = random.randint(1000, 5000)
                 net_worth += retire_savings
                 print(f"You invested in mutual funds and added ${retire_savings}.")
                 slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
                 return
-            
+
             else:
                 slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
                 return age50_69()
-            
+
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
             income = (income / 2)
@@ -788,7 +803,7 @@ def age50_69():
             print(f"You worked part-time and earned ${income}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["experience_seeker"] += 1
             travel_cost = random.randint(10000, 100000)
@@ -796,7 +811,7 @@ def age50_69():
             print(f"You traveled the world and spent ${travel_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["frugal"] += 1
             retirement_area_cost = random.randint(10000, 50000)
@@ -804,11 +819,11 @@ def age50_69():
             print(f"You moved to a retirement-friendly area and spent ${retirement_area_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
             return
-    
+
     elif age == 68:
         slowprint(Fore.BLUE + "You're in your late 60s. Options:" + Style.RESET_ALL)
         print("1. Fully retire (Enjoy your golden years)")
@@ -816,10 +831,10 @@ def age50_69():
         print("3. Make a large donation (Support a cause you care about)")
         print("4. Manage healthcare costs (Invest in health insurance)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
-        
+
         if choice == "1":
             return age70beyond()
-        
+
         elif choice == "2":
             personality_traits["frugal"] += 1
             asset_sell = random.randint(10000, 50000)
@@ -827,7 +842,7 @@ def age50_69():
             print(f"You sold your assets and gained ${asset_sell}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "3":
             personality_traits["cautious"] += 1
             donation_cost = random.randint(1000, 5000)
@@ -835,7 +850,7 @@ def age50_69():
             print(f"You made a large donation and spent ${donation_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         elif choice == "4":
             personality_traits["cautious"] += 1
             health_insurance_cost = random.randint(1000, 5000)
@@ -843,11 +858,12 @@ def age50_69():
             print(f"You invested in health insurance and spent ${health_insurance_cost}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
-        
+
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
             return
     return financial_decisions()
+
 
 def age70beyond():
     slowprint("Congratulations! You have retired and are now in retirement.")
@@ -856,62 +872,73 @@ def age70beyond():
     print("3. 🏡 Live a quiet life (Enjoy your years in peace)")
     print("4. 💰 Pass wealth down to family (Support future generations)")
     slowprint(Fore.GREEN + f"YOUR FINAL NET WORTH: ${net_worth}!!!" + Style.RESET_ALL)
-    
+
     choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
     if choice == "1":
         personality_traits["experience_seeker"] += 1
         print("You chose to travel the world.🛫 Enjoy your adventures!")
-    
+
     elif choice == "2":
         personality_traits["experience_seeker"] += 1
         print("You chose to volunteer. Giving back is a great way to spend your time!")
-    
+
     elif choice == "3":
         personality_traits["frugal"] += 1
         print("You chose to live a quiet life. Enjoy your peaceful years! 🏡")
-    
+
     elif choice == "4":
-        #Support future generations
+        # Support future generations
         personality_traits["cautious"] += 1
         print("You chose to pass wealth down to your family. Support future generations! 💰💸")
     else:
         slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
         return
-    
+
     # Personality Summary
-    slowprint("\nLet's pave your story and reflect on how your decisions/personality would have played out in the real world!")
+    slowprint(
+        "\nLet's pave your story and reflect on how your decisions/personality would have played out in the real world!")
     print("")
-    
+
     if personality_traits["risk_taker"] > personality_traits["cautious"]:
         print("You are mostly a risk-taker! You embraced opportunities with high rewards but also high risks.")
-        slowprint(Fore.BOLD + Fore.YELLOW + "This bold approach to finance is admired! However, make sure to prioritize financial stability as well, and balancing high-risk investments with stable assets (like bonds or index funds) might help secure this." + Style.RESET_ALL)
-    
+        slowprint(
+            Fore.BOLD + Fore.YELLOW + "This bold approach to finance is admired! However, make sure to prioritize financial stability as well, and balancing high-risk investments with stable assets (like bonds or index funds) might help secure this." + Style.RESET_ALL)
+
     else:
-        print("You are quite financially cautious! You prioritized stability and long-term security over risky opportunities.")
-        slowprint(Fore.BOLD + Fore.YELLOW + "You were secure, but taking calculated risks—such as small investments or side businesses—might have helped you grow your wealth without jeopardizing security." + Style.RESET_ALL)
+        print(
+            "You are quite financially cautious! You prioritized stability and long-term security over risky opportunities.")
+        slowprint(
+            Fore.BOLD + Fore.YELLOW + "You were secure, but taking calculated risks—such as small investments or side businesses—might have helped you grow your wealth without jeopardizing security." + Style.RESET_ALL)
     print("")
-    
+
     time.sleep(1)
     if personality_traits["luxury_spender"] > personality_traits["frugal"]:
         print("You tend to enjoy the finer things in life! You prioritized luxury and experiences over savings.")
-        slowprint(Fore.BOLD + Fore.YELLOW + "While happiness is important, balancing spending with savings could improve financial security." + Style.RESET_ALL)
-        
+        slowprint(
+            Fore.BOLD + Fore.YELLOW + "While happiness is important, balancing spending with savings could improve financial security." + Style.RESET_ALL)
+
     else:
-        print("You are a bit frugal and financially disciplined. You made sure to secure a stable future through careful spending.")
-        slowprint(Fore.BOLD +Fore.CYAN + "Your careful budgeting and disciplined saving have put you in a strong financial position! However, life isn’t just about accumulating wealth - spending on experiences, personal growth, or even calculated investments are neccessary to make your life more fulfilling!" + Style.RESET_ALL)
+        print(
+            "You are a bit frugal and financially disciplined. You made sure to secure a stable future through careful spending.")
+        slowprint(
+            Fore.BOLD + Fore.CYAN + "Your careful budgeting and disciplined saving have put you in a strong financial position! However, life isn’t just about accumulating wealth - spending on experiences, personal growth, or even calculated investments are necessary to make your life more fulfilling!" + Style.RESET_ALL)
     print("")
     time.sleep(1)
-    
+
     if personality_traits["career_focused"] > personality_traits["experience_seeker"]:
         print("You are quite career-driven! You prioritized financial growth and professional success.")
-        slowprint(Fore.BOLD + Fore.MAGENTA + "You worked hard to climb the career ladder, and it paid off! While income is key to financial success, making your money work for you through smart investments and passive income sources could have helped even more, and it is important to note that taking a break is also necessary!" + Style.RESET_ALL)
+        slowprint(
+            Fore.BOLD + Fore.MAGENTA + "You worked hard to climb the career ladder, and it paid off! While income is key to financial success, making your money work for you through smart investments and passive income sources could have helped even more, and it is important to note that taking a break is also necessary!" + Style.RESET_ALL)
     else:
-        print("You love to value life experiences! You sought joy in travel, socializing, and meaningful moments over strict financial discipline.")
-        slowprint(Fore.BOLD + Fore.MAGENTA + "While your memories are invaluable and great for your mental health, a bit more financial planning—like setting aside funds for the future or investing could have ensured long-term security while still allowing for adventure." + Style.RESET_ALL)
-    
+        print(
+            "You love to value life experiences! You sought joy in travel, socializing, and meaningful moments over strict financial discipline.")
+        slowprint(
+            Fore.BOLD + Fore.MAGENTA + "While your memories are invaluable and great for your mental health, a bit more financial planning—like setting aside funds for the future or investing could have ensured long-term security while still allowing for adventure." + Style.RESET_ALL)
+
     print("")
     print(Fore.BOLD + "\nThank you for playing" + Fore.BLUE + " Head $tart" + Style.RESET_ALL + "!")
     exit()
+
 
 def financial_decisions():
     global income, net_worth, savings, personality_traits
@@ -921,26 +948,26 @@ def financial_decisions():
         choice = input(
             "1. Save 50% of your income \n2. Invest in stocks \n3. Spend on luxury items \n4. Save for retirement" + Fore.RED + "\n5. Retire" + Style.RESET_ALL + "\n")
         print("")
-        
+
         if choice == "1":
             savings += (income * 0.5)
             net_worth += (income * 0.5)  # Save half of income into savings
             personality_traits["cautious"] += 1
             personality_traits["frugal"] += 1
             print(f"You saved 50% of your income into savings. Savings: ${savings}.")
-        
+
         elif choice == "2":
             invest_result = random.choice([100, 5000, 10000, 50000, 25000, 20000])
             net_worth += invest_result  # Net worth increases from investments
             personality_traits["risk_taker"] += 1
             print(f"You invested in stocks, and your investment resulted in ${invest_result}. Net worth: ${net_worth}.")
-        
+
         elif choice == "3":
             luxury_result = random.choice([-10000, -5000, -1000, -2000])
             net_worth += luxury_result  # Spending on luxury decreases net worth
             personality_traits["luxury_spender"] += 1
             print(f"You spent ${abs(luxury_result)} on luxury items. Net worth: ${net_worth}.")
-        
+
         elif choice == "4":
             retire_savings = random.choice([1000, 5000, 10000])
             net_worth += retire_savings  # Savings for retirement added to savings balance
@@ -948,7 +975,7 @@ def financial_decisions():
             personality_traits["cautious"] += 1
             personality_traits["frugal"] += 1
             print(f"You saved for retirement, adding ${retire_savings} to savings. Savings: ${savings}.")
-        
+
         elif choice == "5":
             print("You chose to retire!")
             return age70beyond()  # Proceed to retirement
@@ -956,23 +983,25 @@ def financial_decisions():
             print(Fore.RED + "Invalid input. Please choose a valid option." + Style.RESET_ALL)
             break
 
+
 def random_events(age, net_worth):
     events = [
         (Fore.GREEN + "🎉 You won a lottery!" + Fore.RESET, 50000),
         (Fore.GREEN + "🎊 You got a promotion!" + Fore.RESET, 20000),
         (Fore.RED + "💸 You had an unexpected medical expense." + Fore.RESET, -10000),
-        (Fore.GREEN +"🎉 You received an inheritance." + Fore.RESET, 30000),
+        (Fore.GREEN + "🎉 You received an inheritance." + Fore.RESET, 30000),
         (Fore.RED + "📉 You faced a job loss." + Fore.RESET, -20000)
         (Fore.RED + "😞 You had a car accident." + Fore.RESET, -15000),
         (Fore.GREEN + "🤑 Side business took off!" + Fore.RESET, 10000),
         (Fore.RED + "📉 Stock market crash! You lost some money" + Fore.RESET, -5000)
         (Fore.RED + "🏠 Unexpected home repair costs." + Fore.RESET, -8000),
-        (Fore.RED + "📉 Economic recession! Your investments took a hit." + Fore.RESET, -12000),     
+        (Fore.RED + "📉 Economic recession! Your investments took a hit." + Fore.RESET, -12000),
     ]
     if random.random() < 0.2:
         event, amount = random.choice(events)
         net_worth += amount
         print(f"At age {age}: {event} (Net worth: ${net_worth})")
+
 
 def help():
     print("")
@@ -982,7 +1011,7 @@ def help():
     print("Your goal is to retire with the highest net worth possible.")
     print("You will be presented with choices at different ages, and your decisions will impact your net worth.")
     print("Good luck!")
-    
+
     slowprint(Fore.GREEN + "Need more help? Type 'yes' or 'no'" + Style.RESET_ALL)
     if input().lower() == "yes":
         print(Fore.GREEN + "\nHELP MENU:" + Style.RESET_ALL)
@@ -990,25 +1019,29 @@ def help():
         print("2. How does the game work?")
         print("3. What are the different paths I can take?")
         print("4. Exit Help Menu")
-        
+
         choice = input("Enter a number to learn more: ")
         if choice == "1":
-            print("Your financial choices impact your net worth positively or negatively. Smart investments and career decisions increase it, while unnecessary expenses and bad luck decrease it.")
+            print(
+                "Your financial choices impact your net worth positively or negatively. Smart investments and career decisions increase it, while unnecessary expenses and bad luck decrease it.")
         elif choice == "2":
-            print("The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
+            print(
+                "The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
         elif choice == "3":
-            print("You can choose different life paths like college, a job, or starting a business. Each path has unique financial opportunities and risks.")
+            print(
+                "You can choose different life paths like college, a job, or starting a business. Each path has unique financial opportunities and risks.")
         elif choice == "4":
             return
         else:
             print("Invalid choice. Please enter a valid number.")
             return help()
-    
+
     elif input().lower() == "no":
         print(Fore.GREEN + "Good luck!" + Style.RESET_ALL)
         return main()
 
     main()
+
 
 def main():
     global net_worth, age
@@ -1021,15 +1054,14 @@ def main():
     name = input()
     time.sleep(.5)
     slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
-    
 
     initial_choice()
-    
 
-    #if isinstance(financial_effect, int):
-        #net_worth += financial_effect
+    # if isinstance(financial_effect, int):
+    # net_worth += financial_effect
 
     age_transition()
+
 
 if __name__ == "__main__":
     main()
