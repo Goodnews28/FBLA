@@ -1,7 +1,7 @@
 import time
 import random
 from colorama import Fore, Back, Style
-from ascii_art import get_ascii_art_for_stage
+from ascii_art import get_art_for_stage
 
 global income, net_worth, savings,  age, reflect
 savings = 0
