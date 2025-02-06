@@ -481,7 +481,6 @@ def age30_40():
 
     return financial_decisions()
 
-
 def age40_50():
     global net_worth, age
     if age == 43:
@@ -573,7 +572,6 @@ def age40_50():
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
             return
     return financial_decisions()
-
 
 def age50_69():
     global net_worth, age, income
@@ -811,7 +809,6 @@ def age50_69():
             return
     return financial_decisions()
 
-
 def age70beyond():
     slowprint("Congratulations! You have retired and are now in retirement.")
     print("1.🏖️ Travel the world (Spend your savings on adventures)")
@@ -879,7 +876,6 @@ def age70beyond():
     print("")
     print("\nThank you for playing" + Fore.BLUE + " Head $tart" + Style.RESET_ALL + "!")
     exit()
-
 
 def financial_decisions():
     global income, net_worth, savings, personality_traits
@@ -983,20 +979,17 @@ def help():
 
     main()
 
-
 def main():
     global net_worth, age
     income, career = None, None
     print(
         Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
-    print("If you need help at any time, type 'help' to get to the help menu.")
+    print("If you need help at any time, type 'help' to get to the help menu.\n")
     time.sleep(1)
-    print("")
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
     name = input()
     time.sleep(.5)
-    print("")
-    slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
+    slowprint(f"\nHello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
 
     initial_choice()
     age_transition()
