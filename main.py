@@ -40,9 +40,9 @@ def initial_choice():
     global net_worth
     while True:
         slowprint(Fore.BLUE + "\nYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
-        print("1. Get a Job (Start earning immediately, but limited long-term growth)")
-        print("2. Go to College (Invest in education for better future earnings, but take on debt")
-        print("3. Start a Business (High risk, high reward, but requires upfront investment)\n")
+        print("1. 🦺 Get a Job (Start earning immediately, but limited long-term growth)")
+        print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt")
+        print("3. 👨‍💼 Start a Business (High risk, high reward, but requires upfront investment)\n")
         time.sleep(.5)
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
@@ -293,8 +293,8 @@ def age25_30():
     global net_worth, age, savings, income
     if age == 28:
         slowprint(Fore.BLUE + "You are now settling into adulthood. Choose:" + Style.RESET_ALL)
-        print("1. 🏘 Buy a house (Requires a down payment, but it could appreciate over time)")
-        print("2. 🏡Rent a house(Less expensive, but no property appreciation")
+        print("1. 🏘  Buy a house (Requires a down payment, but it could appreciate over time)")
+        print("2. 🏡 Rent a house(Less expensive, but no property appreciation")
         print("3. 👪 Start a family")
         print("4. 📋 Climb the career ladder (Could lead to salary increases, promotions)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
@@ -363,15 +363,14 @@ def age25_30():
     financial_decisions()
     # NOT DONE DO SOME CHOICES HERE
 
-
 def age30_40():
     global net_worth, age
     if age == 33:
         slowprint(Fore.BLUE + "You're in your 30s, building your career and wealth. Choose:" + Style.RESET_ALL)
-        print("1. Expand your investment portfolio (Stocks, real estate, bonds, mutual funds)")
-        print("2. Focus on career advancement (Could lead to salary increases, promotions)")
-        print("3. Purchase a vacation home")
-        print("4. Focus on growing your family")
+        print("1.📊 Expand your investment portfolio (Stocks, real estate, bonds, mutual funds)")
+        print("2.💲 Focus on career advancement (Could lead to salary increases, promotions)")
+        print("3.🏡 Purchase a vacation home")
+        print("4.👪 Focus on growing your family")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
         if choice == "1":
@@ -413,14 +412,14 @@ def age30_40():
 
     elif age == 38:
         slowprint(Fore.BLUE + "You're in your late 30s. Choose:" + Style.RESET_ALL)
-        print("1. Plan for retirement (Max out retirement savings, invest in 401k)")
-        print("2. Invest in your health (Gym membership, healthy food)")
-        print("3. Pay off your mortgage (Reduce debt, increase net worth)")
-        print("4. Take a vacation (Relax and unwind)")
+        print("1.🧾 Plan for retirement (Max out retirement savings, invest in 401k)")
+        print("2.🥗 Invest in your health (Gym membership, healthy food)")
+        print("3.💵 Pay off your mortgage (Reduce debt, increase net worth)")
+        print("4.🌴 Take a vacation (Relax and unwind)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["cautious"] += 1
-            slowprint("You chose to plan for retirement. How?")
+            slowprint(Fore.BLUE + "\nYou chose to plan for retirement. How?" + Style.RESET_ALL)
             print("1. Max out retirement savings")
             print("2. Invest in 401k")
             print("3. Invest in Roth IRA")
@@ -493,10 +492,10 @@ def age40_50():
     global net_worth, age
     if age == 43:
         slowprint(Fore.BLUE + "Midlife! Options:" + Style.RESET_ALL)
-        print("1. Expand investment portfolio (Could accumulate wealth over time")
-        print("2. Take a career break (Risking reduced income, but sometimes needed for balance)")
-        print("3. Buy a luxury asset")
-        print("4. Aggressively save for retirement")
+        print("1.🧐 Expand investment portfolio (Could accumulate wealth over time")
+        print("2.🌴 Take a career break (Risking reduced income, but sometimes needed for balance)")
+        print("3.🚢 Buy a luxury asset")
+        print("4.💰 Aggressively save for retirement")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["risk_taker"] += 1
@@ -587,10 +586,10 @@ def age50_69():
     if age == 53:
         slowprint(Fore.BLUE + "You're in your golden years! Options:" + Style.RESET_ALL)
         print("Planning for retirement. Choose:")
-        print("1. Began diversifying your source of income")
-        print("2. Travel the world (Spend your savings on adventures)")
-        print("3. Downsize your home to free up capital")
-        print("4. Plan for retirement (wills, trusts, charities)")
+        print("1.💳 Began diversifying your source of income")
+        print("2.🚢 Travel the world (Spend your savings on adventures)")
+        print("3.🏠 Downsize your home to free up capital")
+        print("4.📜 Plan for retirement (wills, trusts, charities)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["career_focused"] += 1
@@ -662,10 +661,10 @@ def age50_69():
 
     elif age == 58:
         slowprint(Fore.BLUE + "You're in your late 50s. Options:" + Style.RESET_ALL)
-        print("1. Focus on growing your wealth")
-        print("2. Spend on experiences (Travel, hobbies)")
-        print("3. Take a family vacation")
-        print("4. Plan for retirement")
+        print("1.🧐 Focus on growing your wealth")
+        print("2.🧳 Spend on experiences (Travel, hobbies)")
+        print("3.🚢 Take a family vacation")
+        print("4.📜 Plan for retirement")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
         if choice == "1":
@@ -705,10 +704,10 @@ def age50_69():
 
     elif age == 63:
         slowprint(Fore.BLUE + "In your 60s, you must make key decisions about late-life planning." + Style.RESET_ALL)
-        print("1. Plan for retirement (Max out retirement savings, invest in 401k)")
-        print("2. Work part-time (Stay active and earn extra income)")
-        print("3. Trip around the globe (Spend your savings on adventures)")
-        print("4. Move to a retirement friendly area ")
+        print("1.💲 Plan for retirement (Max out retirement savings, invest in 401k)")
+        print("2.💪 Work part-time (Stay active and earn extra income)")
+        print("3.🌍 Trip around the globe (Spend your savings on adventures)")
+        print("4.🏠 Move to a retirement friendly area ")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
         if choice == "1":
             personality_traits["cautious"] += 1
@@ -780,10 +779,10 @@ def age50_69():
 
     elif age == 68:
         slowprint(Fore.BLUE + "You're in your late 60s. Options:" + Style.RESET_ALL)
-        print("1. Fully retire (Enjoy your golden years)")
-        print("2. Sell your assets (Downsize and free up capital)")
-        print("3. Make a large donation (Support a cause you care about)")
-        print("4. Manage healthcare costs (Invest in health insurance)")
+        print("1.🧓 Fully retire (Enjoy your golden years)")
+        print("2.📈 Sell your assets (Downsize and free up capital)")
+        print("3.📊 Make a large donation (Support a cause you care about)")
+        print("4.💵 Manage healthcare costs (Invest in health insurance)")
         choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
 
         if choice == "1":
@@ -821,10 +820,10 @@ def age50_69():
 
 def age70beyond():
     slowprint("Congratulations! You have retired and are now in retirement.")
-    print("1. 🏖️ Travel the world (Spend your savings on adventures)")
-    print("2. 👨‍🏫 Volunteer (Give back to the community)")
-    print("3. 🏡 Live a quiet life (Enjoy your years in peace)")
-    print("4. 💰 Pass wealth down to family (Support future generations)")
+    print("1.🏖️ Travel the world (Spend your savings on adventures)")
+    print("2.👨‍🏫 Volunteer (Give back to the community)")
+    print("3.🏡 Live a quiet life (Enjoy your years in peace)")
+    print("4.💰 Pass wealth down to family (Support future generations)")
     slowprint(Fore.GREEN + f"YOUR FINAL NET WORTH: ${net_worth}!!!" + Style.RESET_ALL)
 
     choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
@@ -849,48 +848,42 @@ def age70beyond():
         return
 
     # Personality Summary
-    slowprint(
-        "\nLet's pave your story and reflect on how your decisions/personality would have played out in the real world!")
+    slowprint(Fore.BLUE +
+        "\nLet's pave your story and reflect on how your decisions/personality would have played out in the real world!" + Style.RESET_ALL)
     print("")
 
     if personality_traits["risk_taker"] > personality_traits["cautious"]:
         print("You are mostly a risk-taker! You embraced opportunities with high rewards but also high risks.")
-        slowprint(
-            Fore.BOLD + Fore.YELLOW + "This bold approach to finance is admired! However, make sure to prioritize financial stability as well, and balancing high-risk investments with stable assets (like bonds or index funds) might help secure this." + Style.RESET_ALL)
+        slowprint(Fore.YELLOW + "This bold approach to finance is admired! However, make sure to prioritize financial stability as well, and balancing high-risk investments with stable assets (like bonds or index funds) might help secure this." + Style.RESET_ALL)
 
     else:
         print(
             "You are quite financially cautious! You prioritized stability and long-term security over risky opportunities.")
-        slowprint(
-            Fore.BOLD + Fore.YELLOW + "You were secure, but taking calculated risks—such as small investments or side businesses—might have helped you grow your wealth without jeopardizing security." + Style.RESET_ALL)
+        slowprint(Fore.YELLOW + "You were secure, but taking calculated risks—such as small investments or side businesses—might have helped you grow your wealth without jeopardizing security." + Style.RESET_ALL)
     print("")
 
     time.sleep(1)
     if personality_traits["luxury_spender"] > personality_traits["frugal"]:
         print("You tend to enjoy the finer things in life! You prioritized luxury and experiences over savings.")
-        slowprint(
-            Fore.BOLD + Fore.YELLOW + "While happiness is important, balancing spending with savings could improve financial security." + Style.RESET_ALL)
+        slowprint(Fore.YELLOW + "While happiness is important, balancing spending with savings could improve financial security." + Style.RESET_ALL)
 
     else:
         print(
             "You are a bit frugal and financially disciplined. You made sure to secure a stable future through careful spending.")
-        slowprint(
-            Fore.BOLD + Fore.CYAN + "Your careful budgeting and disciplined saving have put you in a strong financial position! However, life isn’t just about accumulating wealth - spending on experiences, personal growth, or even calculated investments are necessary to make your life more fulfilling!" + Style.RESET_ALL)
+        slowprint(Fore.CYAN + "Your careful budgeting and disciplined saving have put you in a strong financial position! However, life isn’t just about accumulating wealth - spending on experiences, personal growth, or even calculated investments are necessary to make your life more fulfilling!" + Style.RESET_ALL)
     print("")
     time.sleep(1)
 
     if personality_traits["career_focused"] > personality_traits["experience_seeker"]:
         print("You are quite career-driven! You prioritized financial growth and professional success.")
-        slowprint(
-            Fore.BOLD + Fore.MAGENTA + "You worked hard to climb the career ladder, and it paid off! While income is key to financial success, making your money work for you through smart investments and passive income sources could have helped even more, and it is important to note that taking a break is also necessary!" + Style.RESET_ALL)
+        slowprint(Fore.MAGENTA + "You worked hard to climb the career ladder, and it paid off! While income is key to financial success, making your money work for you through smart investments and passive income sources could have helped even more, and it is important to note that taking a break is also necessary!" + Style.RESET_ALL)
     else:
         print(
             "You love to value life experiences! You sought joy in travel, socializing, and meaningful moments over strict financial discipline.")
-        slowprint(
-            Fore.BOLD + Fore.MAGENTA + "While your memories are invaluable and great for your mental health, a bit more financial planning—like setting aside funds for the future or investing could have ensured long-term security while still allowing for adventure." + Style.RESET_ALL)
+        slowprint(Fore.MAGENTA + "While your memories are invaluable and great for your mental health, a bit more financial planning—like setting aside funds for the future or investing could have ensured long-term security while still allowing for adventure." + Style.RESET_ALL)
 
     print("")
-    print(Fore.BOLD + "\nThank you for playing" + Fore.BLUE + " Head $tart" + Style.RESET_ALL + "!")
+    print("\nThank you for playing" + Fore.BLUE + " Head $tart" + Style.RESET_ALL + "!")
     exit()
 
 
@@ -950,10 +943,10 @@ def random_events(age, net_worth):
         (Fore.RED + "🏠 Unexpected home repair costs." + Fore.RESET, -8000),
         (Fore.RED + "📉 Economic recession! Your investments took a hit." + Fore.RESET, -12000),
     ]
-    if random.random() < 0.2:
+    if random.random() < 0.3:
         event, amount = random.choice(events)
         net_worth += amount
-        print(f"At age {age}: {event} (Net worth: ${net_worth})")  
+        slowprint(Fore.BLUE + f"At age {age}: {event} (Net worth: ${net_worth})" + Style.RESET_ALL)  
     
     return net_worth
 
