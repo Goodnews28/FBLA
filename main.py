@@ -135,7 +135,7 @@ def start_a_business():
 
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
-    global net_worth, age
+    global net_worth, age, income
     while age <= 70:
         print("...")
         print(f"\n📅 You are now {age} years old.")
