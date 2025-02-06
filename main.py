@@ -90,7 +90,7 @@ def college():
     print("")
     print(Fore.BLUE + "Do you want to stay in-state or go out of state?" + Style.RESET_ALL)
     choice = get_choice(
-        "1. In-state (Costs $100,000, more limitations) \n2. Out-of-state for $160,000 (Costs $160,000, more experiences) \n", ["1", "2"])
+        "1. In-state (Costs $100,000, more limitations) \n2. Out-of-state (Costs $160,000, more experiences) \n", ["1", "2"])
     if choice == "1":
         personality_traits["cautious"] += 1
         print("You choose an in-state school, saving money but limiting your networking potential.")
@@ -143,27 +143,22 @@ def age_transition():
 
         if age < 25:
             # Age 18-25: Young adulthood, early career decisions
-            #print("🌱 You're in your early years, full of energy and choices ahead.")
             get_art_for_stage("18-25")
             age18_25()
         elif age < 30:
             # Age 25-30: Settling down, career decisions
-            #print("💼 Your career is taking shape. Time to make key decisions!")
             get_art_for_stage("25-30")
             age25_30()
         elif age < 40:
             # Age 30-40: Building wealth, career progression
-            #print("🚀 This is a crucial period for wealth building and career progression.")
             get_art_for_stage("30-40")
             age30_40()
         elif age < 50:
             # Age 40-50: Midlife, focus on long-term goals
-            #print("🔍 You're entering midlife, where long-term financial stability is essential.")
             get_art_for_stage("40-50")   
             age40_50()
         elif age < 70:
             # Age 50-70: Planning for retirement
-            #print("🏡 Retirement planning is now a priority. Make wise choices!")
             get_art_for_stage("50-69")
             age50_69()
         else:
@@ -178,7 +173,7 @@ def age_transition():
 def age18_25():
     global net_worth, age, income
     if age == 18:
-        slowprint(Fore.BLUE + "🌱 Welcome to adulthood! Your future starts here. What will you prioritize?" + Style.RESET_ALL)
+        slowprint(Fore.BLUE + "Welcome to adulthood! Your future starts here. What will you prioritize?" + Style.RESET_ALL)
         print("1. Focus on career advancement and build a stable future")
         print("2. Enjoy your youth, travel, and socialize")
         print("3. Take a gap year to explore and find your passion")
@@ -361,7 +356,6 @@ def age25_30():
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
             return
     financial_decisions()
-    # NOT DONE DO SOME CHOICES HERE
 
 def age30_40():
     global net_worth, age
