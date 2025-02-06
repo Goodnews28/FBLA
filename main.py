@@ -943,17 +943,19 @@ def random_events(age, net_worth):
         (Fore.GREEN + "🎊 You got a promotion!" + Fore.RESET, 20000),
         (Fore.RED + "💸 You had an unexpected medical expense." + Fore.RESET, -10000),
         (Fore.GREEN + "🎉 You received an inheritance." + Fore.RESET, 30000),
-        (Fore.RED + "📉 You faced a job loss." + Fore.RESET, -20000)
+        (Fore.RED + "📉 You faced a job loss." + Fore.RESET, -20000),
         (Fore.RED + "😞 You had a car accident." + Fore.RESET, -15000),
         (Fore.GREEN + "🤑 Side business took off!" + Fore.RESET, 10000),
-        (Fore.RED + "📉 Stock market crash! You lost some money" + Fore.RESET, -5000)
+        (Fore.RED + "📉 Stock market crash! You lost some money" + Fore.RESET, -5000),
         (Fore.RED + "🏠 Unexpected home repair costs." + Fore.RESET, -8000),
         (Fore.RED + "📉 Economic recession! Your investments took a hit." + Fore.RESET, -12000),
     ]
     if random.random() < 0.2:
         event, amount = random.choice(events)
         net_worth += amount
-        print(f"At age {age}: {event} (Net worth: ${net_worth})")
+        print(f"At age {age}: {event} (Net worth: ${net_worth})")  
+    
+    return net_worth
 
 def help():
     print("")
