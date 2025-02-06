@@ -7,15 +7,15 @@
 
 ### Features:
 
-  _Career Paths:_ Choose from various careers with different salary levels, risks, and growth potential.
+ * _Career Paths:_ Choose from various careers with different salary levels, risks, and growth potential.
   
-  _Investment Options:_ Invest in stocks, real estate, or savings accounts to grow wealth over time.
+ * _Investment Options:_ Invest in stocks, real estate, or savings accounts to grow wealth over time.
   
-  _Random Life Events:_ Navigate unexpected situations like economic downturns, promotions, or emergencies.
+ * _Random Life Events:_ Navigate unexpected situations like economic downturns, promotions, or emergencies.
   
-  _Decision-Based Gameplay:_ Every choice affects your financial standing and life trajectory.
+ * _Decision-Based Gameplay:_ Every choice affects your financial standing and life trajectory.
   
-  _Interactive UI:_ Simple text-based interface for immersive storytelling.
+ * _Interactive UI:_ Simple text-based interface for immersive storytelling.
 
 ### How to Play:
 
@@ -33,7 +33,9 @@
 
 * Input numerical values for investments and savings.
 
-* Type 'quit' at any time to exit the game.
+* Type 'help' at any point in game to reach the help menu
+
+* Type 'stop' at any time to exit the game.
 
 ### Roadmap:
 
@@ -47,7 +49,18 @@
 
 ## Technologies
 
-_Name the technologies used in the project._ 
-* [Spring] - Framework Used.
+_The technologies used in the project:_ 
+* [Python] - Programming Language.
+* [Colorama] - Used for colored text and formatted outputs to enhance the visual experience.
+* [Random] - For simulating financial events and random life events
 * [Example](https://example.com) - UI Library.
 ## Documentation
+The game logic is implemented in Python, and it uses randomization for events and decisions to keep the game unpredictable.
+
+### Key Functions:
+* _age18_25()_ - Handles life decisions and impacts at the start of adulthood (18-25 years old).
+* _financial_decisions()_ - The core function that processes investment, career, and financial choices over time.
+* _get_choice()_ - A helper function that prompts the player to make a choice and ensures valid input.
+  
+### Progression: 
+The player starts at age 18, makes key choices related to career, investments, or personal life, and progresses through age milestones in increments of 5 years until retirement.
