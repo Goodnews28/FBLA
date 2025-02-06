@@ -44,7 +44,7 @@ def initial_choice():
         print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt")
         print("3. 👨‍💼 Start a Business (High risk, high reward, but requires upfront investment)\n")
         time.sleep(.5)
-        choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+        choice = get_choice("Enter your choice (1-3): ", ["1", "2", "3"])
 
         if choice == "1":
             personality_traits["career_focused"] += 1
@@ -745,7 +745,7 @@ def age50_69():
 
         elif choice == "2":
             personality_traits["experience_seeker"] += 1
-            income = (income / 2)
+            income = 40000
             net_worth += income
             print(f"You worked part-time and earned ${income}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
@@ -988,12 +988,14 @@ def main():
     global net_worth, age
     income, career = None, None
     print(
-        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.\n")
+        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
     print("If you need help at any time, type 'help' to get to the help menu.")
     time.sleep(1)
+    print("")
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
     name = input()
     time.sleep(.5)
+    print("")
     slowprint(f"Hello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
 
     initial_choice()
