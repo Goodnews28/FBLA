@@ -178,7 +178,7 @@ def age_transition():
 def age18_25():
     global net_worth, age, income
     if age == 18:
-        slowprint(Fore.BLUE + "Welcome to adulthood! Your future starts here. What will you prioritize?" + Style.RESET_ALL)
+        slowprint(Fore.BLUE + "🌱 Welcome to adulthood! Your future starts here. What will you prioritize?" + Style.RESET_ALL)
         print("1. Focus on career advancement and build a stable future")
         print("2. Enjoy your youth, travel, and socialize")
         print("3. Take a gap year to explore and find your passion")
