@@ -30,7 +30,7 @@ def get_art_for_stage(stage):
     👴 Crucial Period for Wealth
    ____________________________
   |  LEVEL UP!                 |
-  |  Age: [ 30 → 40 ]          |
+  |  Age: [ 38 → 47 ]          |
   |  XP: ██████████ 99%        |
   |  Skills:                   |
   |  - Wisdom       ✔️         |
@@ -44,7 +44,7 @@ def get_art_for_stage(stage):
         "48-57": """
     💼 Mid-Life
         /\  
-       /  \      "The View is Great at 40-50"
+       /  \      "The View is Great at 48-57"
       /    \      
      /      \    But There's More to Climb...  
     /        \  
