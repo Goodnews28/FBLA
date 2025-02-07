@@ -4,7 +4,7 @@ displayed_art = set()
 def get_art_for_stage(stage):
     """Return ASCII art for different game stages"""
     art = {
-        "18-25": """
+        "18-27": """
     🎓 Early Life
     +---------+
     |         |
@@ -14,7 +14,7 @@ def get_art_for_stage(stage):
     +---------+
     """,
 
-        "25-30": """
+        "28-37": """
     🏠 Major Decisions
     +---------------------------+
     |             `'::::.       |
@@ -26,7 +26,7 @@ def get_art_for_stage(stage):
     |   """""""""""""""""""     | 
     +---------------------------+
     """,
-        "30-40": """
+        "38-47": """
     👴 Crucial Period for Wealth
    ____________________________
   |  LEVEL UP!                 |
@@ -41,7 +41,7 @@ def get_art_for_stage(stage):
 
     """,
 
-        "40-50": """
+        "48-57": """
     💼 Mid-Life
         /\  
        /  \      "The View is Great at 40-50"
@@ -54,7 +54,7 @@ def get_art_for_stage(stage):
 /________________\  
 
     """,
-        "50-69": """
+        "58-67": """
     👨👩 Golden Years
       ~~~~~      ☀      ~~~~~
     ~~~~~~~~    ~~~~~~    ~~~~~~~~
