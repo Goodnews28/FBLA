@@ -588,7 +588,6 @@ def financial_decisions():
     elif choice == "4":
         retire_savings = random.choice([1000, 5000, 10000])
         net_worth += retire_savings  # Savings for retirement added to savings balance
-        savings += retire_savings
         personality_traits["cautious"] += 1
         personality_traits["frugal"] += 1
         print(f"You saved for retirement, adding ${retire_savings} to savings. Savings: ${savings}.")
