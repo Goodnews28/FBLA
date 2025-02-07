@@ -590,7 +590,7 @@ def financial_decisions():
         net_worth += retire_savings  # Savings for retirement added to savings balance
         personality_traits["cautious"] += 1
         personality_traits["frugal"] += 1
-        print(f"You saved for retirement, adding ${retire_savings} to savings. Savings: ${savings}.")
+        print(f"You saved for retirement, adding ${retire_savings}.")
 
     elif choice == "5":
         print("You chose to retire!")
