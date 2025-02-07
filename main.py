@@ -40,10 +40,10 @@ def initial_choice():
     while True:
         slowprint(Fore.BLUE + "\nYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
         print("1. 🦺 Get a Job (Start earning immediately, but limited long-term growth)")
-        print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt")
+        print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt)")
         print("3. 👨‍💼 Start a Business (High risk, high reward, but requires upfront investment)\n")
         time.sleep(.5)
-        get_choice() = ("Enter your choice (1-3): ", ["1", "2", "3"])
+        choice = get_choice("Enter your choice (1-3): ", ["1", "2", "3"])
 
         if choice == "1":
             personality_traits["career_focused"] += 1
@@ -77,7 +77,7 @@ def get_a_job():
         "Receptionist": 35000
     }
     print("")
-    career, income = random.choice(list(jobs.items()))
+    career, income = random.choice(list(careers.items()))
     slowprint(f"You land a job as a {career} and earn ${income} per year. The road ahead is uncertain, but it's a start!")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
     return career, income
@@ -116,8 +116,9 @@ def collegejob():
         "Professor": 180000, "Veterinarian": 130000
     }
     job, income = random.choice(list(better_jobs.items()))
+    net_worth += income
     slowprint(f"After years of hard work, you graduate and land a job as a {job}, earning ${income} per year!")
-    slowprint("A job after college will usually be more lucrative than without college!")
+    slowprint("*A job after college will usually be more lucrative than without college!*")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
     print("")
     return job, income
@@ -137,9 +138,10 @@ def start_a_business():
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
     global net_worth, age, income
-    while age <= 68:
+    if age != 18:
         print("...")
         print(f"\n📅 You are now {age} years old.")
+    while age <= 68:
         if age == 18:
             print("Life moves fast! Every decision you make will shape your financial future.")
             
@@ -360,7 +362,7 @@ def age38_47():
 
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
-            return age30_40()
+            return age38_47()
 
     elif choice == "2":
         personality_traits["experience_seeker"] += 1
@@ -442,7 +444,7 @@ def age48_57():
 
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 or 2." + Style.RESET_ALL)
-            return age40_50()
+            return age48_57()
 
 def age58_67():
     slowprint(Fore.BLUE + "In your 60s, you must make key decisions about late-life planning." + Style.RESET_ALL)
@@ -489,7 +491,7 @@ def age58_67():
 
         else:
             slowprint(Fore.RED + "Invalid choice. Please enter 1 - 4." + Style.RESET_ALL)
-            return age50_69()
+            return age58_67()
 
     elif choice == "2":
         personality_traits["experience_seeker"] += 1
@@ -626,7 +628,7 @@ def financial_decisions():
 
         elif choice == "5":
             print("You chose to retire!")
-            return age70beyond()  # Proceed to retirement
+            return age68beyond()  # Proceed to retirement
         else:
             print(Fore.RED + "Invalid input. Please choose a valid option." + Style.RESET_ALL)
             break
@@ -653,48 +655,37 @@ def random_events(age, net_worth):
 
 def help():
     print("")
-    slowprint(Fore.GREEN + "\nWelcome to the Head $tart Help Menu!" + Style.RESET_ALL)
-    print("This game is designed to teach you about making smart financial decisions.")
-    print("You will start with a net worth of $100,000 and make choices that will affect your financial future.")
-    print("Your goal is to retire with the highest net worth possible.")
-    print("You will be presented with choices at different ages, and your decisions will impact your net worth.")
-    print("Good luck!")
+    print(Fore.GREEN + "\nHELP MENU:" + Style.RESET_ALL)
+    print("1. How do financial choices affect my net worth?")
+    print("2. How does the game work?")
+    print("3. What are the different paths I can take?")
+    print("4. Exit Help Menu")
+    print("5. Restart the game")
 
-    slowprint(Fore.GREEN + "Need more help? Type 'yes' or 'no'" + Style.RESET_ALL)
-    if input().lower() == "yes":
-        print(Fore.GREEN + "\nHELP MENU:" + Style.RESET_ALL)
-        print("1. How do financial choices affect my net worth?")
-        print("2. How does the game work?")
-        print("3. What are the different paths I can take?")
-        print("4. Exit Help Menu")
+    choice = input("Enter a number to learn more: ")
+    if choice == "1":
+        print(
+            "Smart investments and career decisions increases our networth, while unnecessary expenses and bad luck decrease it.")
+    elif choice == "2":
+        print(
+            "The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
+    elif choice == "3":
+        print(
+            "You can choose different life paths like college, a job, or starting a business. Each path has unique financial opportunities and risks.")
+    elif choice == "4":
+        exit()
+    elif choice == "5":
+        main()
+    else:
+        print("Invalid choice. Please enter a valid number.")
+        return help()
 
-        choice = input("Enter a number to learn more: ")
-        if choice == "1":
-            print(
-                "Smart investments and career decisions increases our networth, while unnecessary expenses and bad luck decrease it.")
-        elif choice == "2":
-            print(
-                "The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
-        elif choice == "3":
-            print(
-                "You can choose different life paths like college, a job, or starting a business. Each path has unique financial opportunities and risks.")
-        elif choice == "4":
-            return
-        else:
-            print("Invalid choice. Please enter a valid number.")
-            return help()
-
-    elif input().lower() == "no":
-        print(Fore.GREEN + "Good luck!" + Style.RESET_ALL)
-        return main()
-
-    main()
 
 def main():
     global net_worth, age
     income, career = None, None
     print(
-        Fore.BLUE + "Welcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
+        Fore.BLUE + "\nWelcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
     print("If you need help at any time, type 'help' to get to the help menu.\n")
     time.sleep(1)
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
