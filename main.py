@@ -43,7 +43,7 @@ def initial_choice():
         print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt")
         print("3. 👨‍💼 Start a Business (High risk, high reward, but requires upfront investment)\n")
         time.sleep(.5)
-        choice = ("Enter your choice (1-3): ", ["1", "2", "3"])
+        get_choice() = ("Enter your choice (1-3): ", ["1", "2", "3"])
 
         if choice == "1":
             personality_traits["career_focused"] += 1
@@ -79,7 +79,6 @@ def get_a_job():
     print("")
     career, income = random.choice(list(jobs.items()))
     slowprint(f"You land a job as a {career} and earn ${income} per year. The road ahead is uncertain, but it's a start!")
-    slowprint("*A job without college may not be as lucrative than after going to college!*")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
     return career, income
 
@@ -138,29 +137,29 @@ def start_a_business():
 def age_transition():
     """Handles transitioning through different life stages with financial decisions."""
     global net_worth, age, income
-    while age <= 70:
+    while age <= 68:
         print("...")
         print(f"\n📅 You are now {age} years old.")
         if age == 18:
             print("Life moves fast! Every decision you make will shape your financial future.")
-
-        if age < 25:
+            
+        if age < 28:
             # Age 18-25: Young adulthood, early career decisions
             get_art_for_stage("18-27")
             age18_27()
-        elif age < 30:
+        elif age < 38:
             # Age 25-30: Settling down, career decisions
             get_art_for_stage("28-37")
             age28_37()
-        elif age < 40:
+        elif age < 48:
             # Age 30-40: Building wealth, career progression
             get_art_for_stage("38-47")
             age38_47()
-        elif age < 50:
+        elif age < 58:
             # Age 40-50: Midlife, focus on long-term goals
             get_art_for_stage("48-57")   
             age48_57()
-        elif age < 70:
+        elif age < 68:
             # Age 50-70: Planning for retirement
             get_art_for_stage("58-67")
             age58_67()
