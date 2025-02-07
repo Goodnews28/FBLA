@@ -56,7 +56,6 @@ Head $tart simulates a player’s financial journey from age 18 to retirement. P
 - **Python**: The primary programming language used for the game logic.
 - **Colorama**: Provides colored text for enhanced visual feedback and formatting.
 - **Random**: Used to simulate random life events and financial occurrences, adding unpredictability to the game.
-- **[Example](https://example.com)**: UI Library for the game interface (hypothetical link, replace if needed).
 
 ## Documentation
 
