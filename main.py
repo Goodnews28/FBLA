@@ -317,7 +317,7 @@ def age28_37():
 
 def age38_47():
     global net_worth, age, personality_traits
-    slowprint(Fore.BLUE + "Halfaway there! You're almost 40! Choose:" + Style.RESET_ALL)
+    slowprint(Fore.BLUE + "Halfway there! You're almost 40! Choose:" + Style.RESET_ALL)
     print("1.🧾 Plan for retirement (Max out retirement savings, invest in 401k)")
     print("2.🥗 Invest in your health (Gym membership, healthy food)")
     print("3.💵 Pay off your mortgage (Reduce debt, increase net worth)")
@@ -510,7 +510,6 @@ def age58_67():
 
     financial_decisions()
 
-
 def age68beyond():
     slowprint("Congratulations! You have retired and are now in retirement.")
     print("1.🏖️ Travel the world (Spend your savings on adventures)")
@@ -587,7 +586,7 @@ def financial_decisions():
     display_menu("Financial Decisions", [
         "💰 Save 50% of your income",
         "📈 Invest in stocks",
-        "🛍️ Spend on luxury items",
+        "🛍️  Spend on luxury items",
         "🏡 Save for retirement",
         "👴 Retire"
     ])
@@ -679,7 +678,7 @@ def help():
 
 def main():
     global net_worth, age
-    print(Fore.BLUE + "\n🌟 Welcome to *Head $tart*! Learn about financial decisions while having fun!" + Style.RESET_ALL)
+    print(Fore.BLUE + "\n🌟 Welcome to Head $tart! Learn about financial decisions while having fun!" + Style.RESET_ALL)
     print("If you need help at any time, type 'help' to get to the help menu.\n")
     time.sleep(1)
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
