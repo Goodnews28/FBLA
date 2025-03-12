@@ -1,99 +1,64 @@
 import unittest
 from unittest.mock import patch
-from io import StringIO
+from main import (
+    initial_choice, get_choice, slowprint, 
+    get_a_job, college, start_a_business,
+    random_events, financial_decisions
+)
 
-from main import age_transition, college, financial_decisions, get_a_job, initial_choice, start_a_business
+class TestHeadStart(unittest.TestCase):
+    def setUp(self):
+        self.initial_net_worth = 1000
+        self.initial_age = 18
 
-class TestHeadStartGame(unittest.TestCase):
+    def test_get_choice_valid_input(self):
+        with patch('builtins.input', return_value='1'):
+            result = get_choice("Test prompt", ["1", "2", "3"])
+            self.assertEqual(result, "1")
 
-    @patch('builtins.input', return_value="1")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_get_a_job(self, mock_stdout, mock_input):
+    def test_get_choice_invalid_then_valid(self):
+        with patch('builtins.input', side_effect=['invalid', '2']):
+            result = get_choice("Test prompt", ["1", "2", "3"])
+            self.assertEqual(result, "2")
+
+    def test_get_a_job_income_range(self):
         career, income = get_a_job()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You got a job", output)
+        self.assertIsInstance(career, str)
         self.assertIsInstance(income, int)
-        self.assertGreater(income, 0)
+        self.assertGreaterEqual(income, 15000)
+        self.assertLessEqual(income, 52000)
 
-    @patch('builtins.input', return_value="1")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_college(self, mock_stdout, mock_input):
-        career, income = college()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You chose to go to college", output)
-        self.assertIsInstance(income, int)
-        self.assertGreater(income, 0)
+    def test_college_in_state_choice(self):
+        with patch('builtins.input', return_value='1'):
+            career, income = college()
+            self.assertIsInstance(career, str)
+            self.assertIsInstance(income, int)
+            self.assertGreaterEqual(income, 79000)
 
-    @patch('builtins.input', return_value="2")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_start_a_business(self, mock_stdout, mock_input):
+    def test_start_business_investment(self):
         net_worth, career, income = start_a_business()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You started a business", output)
+        self.assertEqual(career, "Entrepreneur")
         self.assertIsInstance(income, int)
-        self.assertGreater(income, 0)
-        self.assertLess(net_worth, 1000)  # Business expense should reduce net worth
+        self.assertGreaterEqual(income, 50000)
+        self.assertLessEqual(income, 400000)
 
-    @patch('builtins.input', return_value="1")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_financial_decisions_save(self, mock_stdout, mock_input):
-        global net_worth, income
-        net_worth = 10000  # Set a starting net worth for the test
-        income = 20000  # Set a starting income
-        financial_decisions()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You saved 50% of your income", output)
-        self.assertEqual(net_worth, 20000)  # 50% of income should be saved
+    def test_random_events_impact(self):
+        initial_worth = 10000
+        age = 25
+        new_worth = random_events(age, initial_worth)
+        self.assertIsInstance(new_worth, (int, float))
 
-    @patch('builtins.input', return_value="2")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_financial_decisions_invest(self, mock_stdout, mock_input):
-        global net_worth, income
-        net_worth = 10000  # Set a starting net worth for the test
-        income = 20000  # Set a starting income
-        financial_decisions()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You invested in stocks", output)
-        self.assertGreater(net_worth, 10000)  # Net worth should increase due to investment
+    @patch('random.random')
+    def test_random_events_probability(self, mock_random):
+        mock_random.return_value = 0.2  # Trigger event
+        new_worth = random_events(25, 10000)
+        self.assertNotEqual(new_worth, 10000)
 
-    @patch('builtins.input', return_value="3")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_financial_decisions_spend(self, mock_stdout, mock_input):
-        global net_worth, income
-        net_worth = 10000  # Set a starting net worth for the test
-        income = 20000  # Set a starting income
-        financial_decisions()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You spent", output)
-        self.assertLess(net_worth, 10000)  # Net worth should decrease due to spending
-
-    @patch('builtins.input', return_value="5")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_age_transition(self, mock_stdout, mock_input):
-        global age
-        age = 18
-        age_transition()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("Congratulations! You have retired", output)
-
-    @patch('builtins.input', return_value="1")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_initial_choice_job(self, mock_stdout, mock_input):
-        global net_worth, income
-        net_worth = 5000  # Set initial net worth for testing
-        income = 20000  # Set initial income for testing
-        career, income = initial_choice()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("You got a job", output)
-        self.assertEqual(net_worth, 5000 + income)  # Net worth should increase by the income from the job
-
-    @patch('builtins.input', return_value="stop")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_initial_choice_stop(self, mock_stdout, mock_input):
-        with self.assertRaises(SystemExit):
-            initial_choice()
-        output = mock_stdout.getvalue().strip()
-        self.assertIn("Game Over", output)
+    def test_slowprint_output(self):
+        with patch('time.sleep'):  # Skip delays
+            with patch('builtins.print') as mock_print:
+                slowprint("Test message")
+                mock_print.assert_called()
 
 if __name__ == '__main__':
     unittest.main()

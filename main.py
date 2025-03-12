@@ -19,17 +19,27 @@ personality_traits = {
     "experience_seeker": 0
 }
 
-"""
-    Function to simulate a typewriter effect for displaying text.
-    Arguments:
-    - text: The string to be printed.
-    - delay: Time in seconds between characters (default is 0.05).
-    """
+#Creates a typewriter effect for text output
 def slowprint(text, delay=0.05):
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
     print()
+
+# Progress bar for net worth
+def progress_bar(value, max_value, bar_length=30):
+    percentage = int((value / max_value) * bar_length)
+    bar = "█" * percentage + "-" * (bar_length - percentage)
+    print(Fore.GREEN + f"\n📈 Financial Progress: [{bar}] ${value}" + Style.RESET_ALL)
+
+# Display UI-styled menu with borders
+def display_menu(title, options):
+    border = "═" * (len(title) + 8)
+    print(Fore.BLUE + f"\n╔{border}╗")
+    print(f"║   {title}      ║")
+    print(f"╚{border}╝" + Style.RESET_ALL)
+    for index, option in enumerate(options, 1):
+        print(Fore.CYAN + f"{index}. {option}" + Style.RESET_ALL)
 
 def get_choice(prompt, valid_choices):
     """Handles user input, allowing access to help and ensuring valid choices."""
@@ -40,17 +50,20 @@ def get_choice(prompt, valid_choices):
         elif choice in valid_choices:
             return choice
         else:
-            print(Fore.RED + "Invalid choice. Please enter a valid option." + Style.RESET_ALL)
+            print(Fore.RED + "⚠ Invalid choice. Please enter a valid option." + Style.RESET_ALL)
 
 # Offers the player a set of starting choices (job, college, business)
 def initial_choice():
     global net_worth, personality_traits
     while True:
         slowprint(Fore.BLUE + "\nYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
-        print("1. 🦺 Get a Job (Start earning immediately, but limited long-term growth)")
-        print("2. 🏫 Go to College (Invest in education for better future earnings, but take on debt)")
-        print("3. 👨‍💼 Start a Business (High risk, high reward, but requires upfront investment)\n")
-        time.sleep(.5)
+        
+        display_menu("Choose Your Path", [
+            "🦺 Get a Job (Earn now, but limited growth)",
+            "🎓 Go to College (Higher income, but debt)",
+            "💼 Start a Business (Risky but high reward)"
+        ])
+
         choice = get_choice("Enter your choice (1-3): ", ["1", "2", "3"])
 
         if choice == "1":
@@ -87,6 +100,7 @@ def get_a_job():
     career, income = random.choice(list(careers.items()))
     slowprint(f"\nYou land a job as a {career} and earn ${income} per year. The road ahead is uncertain, but it's a start!")
     slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}\n" + Style.RESET_ALL)
+    progress_bar(net_worth, 100000)
     return career, income
 
 def college():
@@ -150,7 +164,7 @@ def age_transition():
     global net_worth, age, income
     if age != 18:
         print("...")
-        print(f"\n📅 You are  {age} years old.")
+        print(f"\n📅 Age: {age} .")
     if age == 18:
         print("Life moves fast! Every decision you make will shape your financial future.")
     
@@ -569,40 +583,41 @@ def age68beyond():
 def financial_decisions():
     global income, net_worth, personality_traits
     slowprint(Fore.BLUE + "\nWhat would you like to do this time?" + Style.RESET_ALL)
-    options = [
-        "1. Save 50% of your income",
-        "2. Invest in stocks",
-        "3. Spend on luxury items",
-        "4. Save for retirement",
-        "5. Retire"
-    ]
-    for option in options:
-        print(option)
+    
+    display_menu("Financial Decisions", [
+        "💰 Save 50% of your income",
+        "📈 Invest in stocks",
+        "🛍️ Spend on luxury items",
+        "🏡 Save for retirement",
+        "👴 Retire"
+    ])
+
     choice = get_choice("Enter your choice (1-5): \n", ["1", "2", "3", "4", "5"])
     if choice == "1":
         net_worth += (income * 0.5)  # Save half of income into savings
         personality_traits["cautious"] += 1
         personality_traits["frugal"] += 1
-        print(f"You saved 50% of your income.")
+        print(Fore.GREEN + f"💾 You saved 50% of your income." + Style.RESET_ALL)
 
     elif choice == "2":
         invest_result = random.choice([100, 5000, 10000, 50000, 25000, 20000])
         net_worth += invest_result  # Net worth increases from investments
         personality_traits["risk_taker"] += 1
-        print(f"You invested in stocks, and your investment resulted in ${invest_result}. Net worth: ${net_worth}.")
+        print(Fore.GREEN + f"📈 Your stock investment returned ${invest_result}." + Style.RESET_ALL)
 
     elif choice == "3":
         luxury_result = random.choice([-10000, -5000, -1000, -2000])
         net_worth += luxury_result  # Spending on luxury decreases net worth
         personality_traits["luxury_spender"] += 1
-        print(f"You spent ${abs(luxury_result)} on luxury items. Net worth: ${net_worth}.")
+        print(Fore.RED + f"🛍️ You spent ${abs(luxury_result)} on luxury. Net worth: ${net_worth}" + Style.RESET_ALL)
 
     elif choice == "4":
         retire_savings = random.choice([1000, 5000, 10000])
         net_worth += retire_savings  # Savings for retirement added to savings balance
         personality_traits["cautious"] += 1
         personality_traits["frugal"] += 1
-        print(f"You saved for retirement, adding ${retire_savings}.")
+        print(Fore.GREEN + f"🏡 You saved for retirement, adding ${retire_savings}." + Style.RESET_ALL)
+
 
     elif choice == "5":
         print("You chose to retire!")
@@ -632,25 +647,25 @@ def random_events(age, net_worth):
 #Provides help menu for the player
 def help():
     global age
-    print(Fore.GREEN + "\n\nHELP MENU:" + Style.RESET_ALL)
-    print("1. How do financial choices affect my net worth?")
-    print("2. How does the game work?")
-    print("3. What are the different paths I can take?")
-    print("4. Exit Help Menu")
-    print("5. Restart the game")
+    display_menu("Help Menu", [
+    "🧐 How do financial choices affect net worth?",
+    "📜 How does the game work?",
+    "🚀 What different paths can I take?",
+    "❌ Exit Help Menu",
+    "🔄 Restart the game"
+])
 
-    choice = input(Fore.BLUE + "\nEnter a number to learn more: " + Style.RESET_ALL)
-    print("")
+    choice = input(Fore.BLUE + "\nEnter a number to learn more: \n" + Style.RESET_ALL)
     if choice == "1":
-        print("Smart investments and career decisions increases our networth, while unnecessary expenses and bad luck decrease it.")
+        print("💡 Smart investments increase net worth, while unnecessary spending decreases it.")
         time.sleep(1)
         help()
     elif choice == "2":
-        print("The game simulates financial growth through different life stages. You make decisions every 5 years, and random events can impact your wealth.")
-        time.sleep(1)
-        help()
+       print("🎲 The game simulates financial decisions. Every few years, you make choices that impact your future.")
+       time.sleep(1)
+       help()
     elif choice == "3":
-        print( "You can choose different life paths like college, a job, or starting a business. Each path has unique financial opportunities and risks.")
+        print("🛤️ You can pursue a career, start a business, or invest in different opportunities!")
         time.sleep(1)
         help()
     elif choice == "4":
@@ -664,13 +679,13 @@ def help():
 
 def main():
     global net_worth, age
-    print(Fore.BLUE + "\nWelcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
+    print(Fore.BLUE + "\n🌟 Welcome to *Head $tart*! Learn about financial decisions while having fun!" + Style.RESET_ALL)
     print("If you need help at any time, type 'help' to get to the help menu.\n")
     time.sleep(1)
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
     name = input()
     time.sleep(.5)
-    print(f"\nHello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
+    print(f"\n👋 Hello {name}! You are {age} years old and have a starting net worth of ${net_worth}.")
     initial_choice()
     age_transition()
 
