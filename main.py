@@ -662,7 +662,6 @@ def help():
         print("Invalid choice. Please enter a valid number.")
         return help()
 
-
 def main():
     global net_worth, age
     print(Fore.BLUE + "\nWelcome to Head $tart!" + Style.RESET_ALL + "\nThis is a game designed to teach you about making smart financial decisions.")
@@ -671,7 +670,7 @@ def main():
     slowprint(Fore.BLUE + "What is your name?" + Style.RESET_ALL)
     name = input()
     time.sleep(.5)
-    slowprint(f"\nHello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
+    print(f"\nHello {name}! You are {age} years old, and have a starting net worth of ${net_worth}.")
     initial_choice()
     age_transition()
 
