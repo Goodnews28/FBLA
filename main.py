@@ -19,6 +19,10 @@ personality_traits = {
     "experience_seeker": 0
 }
 
+def pickchoice():
+    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    return choice
+
 #Creates a typewriter effect for text output
 def slowprint(text, delay=0.05):
     for char in text:
@@ -194,8 +198,7 @@ def age18_27():
     print("2. 🚙 Decide on your primary mode of transportation")
     print("3. 🎓 Further your education for career growth")
     print("4. 💸 Invest in cryptocurrency (High risk, high reward)")
-    
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     print("")
     if choice == "1":
         # Stock investment
@@ -253,7 +256,7 @@ def age28_37():
     print("2. 🏡 Rent a house (Less expensive, but no property appreciation)")
     print("3. 👪 Start a family")
     print("4. 📋 Climb the career ladder (Could lead to salary increases, promotions)")
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     print("")
     if choice == "1":
         # House Ownership
@@ -322,7 +325,7 @@ def age38_47():
     print("2.🥗 Invest in your health (Gym membership, healthy food)")
     print("3.💵 Pay off your mortgage (Reduce debt, increase net worth)")
     print("4.🌴 Take a vacation (Relax and unwind)")
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     if choice == "1":
         personality_traits["cautious"] += 1
         slowprint(Fore.BLUE + "\nYou chose to plan for retirement. It's a great idea to start doing this early on in your career. How?" + Style.RESET_ALL)
@@ -399,7 +402,7 @@ def age48_57():
     print("2.🌴 Take a career break (Risking reduced income, but sometimes needed for balance)")
     print("3.🚢 Buy a luxury asset")
     print("4.💰 Aggressively save for retirement")
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     if choice == "1":
         personality_traits["risk_taker"] += 1
         personality_traits["career_focused"] += 1
@@ -446,7 +449,7 @@ def age58_67():
     print("2.💪 Work part-time (Stay active and earn extra income)")
     print("3.🌍 Trip around the globe (Spend your savings on adventures)")
     print("4.🏠 Move to a retirement friendly area ")
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     if choice == "1":
         personality_traits["cautious"] += 1
         slowprint(Fore.BLUE + "You chose to plan for retirement. How?" + Style.RESET_ALL)
@@ -518,7 +521,7 @@ def age68beyond():
     print("4.💰 Pass wealth down to family (Support future generations)")
     slowprint(Fore.GREEN + f"YOUR FINAL NET WORTH: ${net_worth}!!!" + Style.RESET_ALL)
 
-    choice = get_choice("Enter your choice (1-4): ", ["1", "2", "3", "4"])
+    choice = pickchoice()
     if choice == "1":
         personality_traits["experience_seeker"] += 1
         print("You chose to travel the world.🛫 Enjoy your adventures!")
@@ -591,7 +594,7 @@ def financial_decisions():
         "👴 Retire"
     ])
 
-    choice = get_choice("Enter your choice (1-5): \n", ["1", "2", "3", "4", "5"])
+    choice = pickchoice()
     if choice == "1":
         net_worth += (income * 0.5)  # Save half of income into savings
         personality_traits["cautious"] += 1
