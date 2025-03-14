@@ -1,6 +1,7 @@
 # Description: This file contains the main game logic for Head $tart, a financial simulation game.
 import time
 import random
+import numpy
 from colorama import Fore, Back, Style
 from ascii_art import get_art_for_stage
 
@@ -45,13 +46,14 @@ def display_menu(title, options):
     for index, option in enumerate(options, 1):
         print(Fore.CYAN + f"{index}. {option}" + Style.RESET_ALL)
 
+#Validates the code on a syntactical and semantic level
 def get_choice(prompt, valid_choices):
     """Handles user input, allowing access to help and ensuring valid choices."""
     while True:
         choice = input(prompt).lower()
-        if choice == "help":
+        if choice == "help": #checks if the input is help if not a number
             help()
-        elif choice in valid_choices:
+        elif choice in valid_choices: #ensures that the user enters a valid number
             return choice
         else:
             print(Fore.RED + "⚠ Invalid choice. Please enter a valid option." + Style.RESET_ALL)
@@ -60,6 +62,7 @@ def get_choice(prompt, valid_choices):
 def initial_choice():
     global net_worth, personality_traits
     while True:
+        #Fore.BLUE is used to print the string in blue color to make the program visually appealing
         slowprint(Fore.BLUE + "\nYou're 18, fresh out of high school, and the world is wide open before you. What's your next step?" + Style.RESET_ALL)
         
         display_menu("Choose Your Path", [
@@ -194,10 +197,14 @@ def age_transition():
 def age18_27():
     global net_worth, age, income, personality_traits
     slowprint(Fore.BLUE + "Welcome to adulthood! Your future starts here. What will you prioritize?" + Style.RESET_ALL)
-    print("1. 💰 Invest in stocks (High risk, high reward)")
-    print("2. 🚙 Decide on your primary mode of transportation")
-    print("3. 🎓 Further your education for career growth")
-    print("4. 💸 Invest in cryptocurrency (High risk, high reward)")
+    decision_array = numpy.array([
+        "1. 💰 Invest in stocks (High risk, high reward)",
+        "2. 🚙 Decide on your primary mode of transportation",
+        "3. 🎓 Further your education for career growth",
+        "4. 💸 Invest in cryptocurrency (High risk, high reward)" ])
+    for i in decision_array:
+        print (i)
+
     choice = pickchoice()
     print("")
     if choice == "1":
@@ -335,7 +342,7 @@ def age38_47():
         print("4. Invest in mutual funds")
         choice = input("Enter your choice (1-4): ")
         if choice == "1":
-            retire_savings = random.randint(10000, 50000)
+            retire_savings = random.randint(10000, 50000) #The random functions allows retire savings to be different each time
             net_worth += retire_savings
             print(f"You maxed out retirement savings and added ${retire_savings}.")
             slowprint(Fore.GREEN + f"Updated net worth: ${net_worth}" + Style.RESET_ALL)
